@@ -1,0 +1,3 @@
+library repository;
+
+/// A Calculator.
