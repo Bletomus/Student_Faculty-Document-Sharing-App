@@ -48,7 +48,7 @@ class _LoginInScreenState extends State<SubmitForm>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>
               [
-                Image.asset("assets/logo/" + LogoConstants.logo,width: 100, height: 100),
+                Image.asset("assets/logo/" + ConstantVariables.logo,width: 100, height: 100),
                 Container
                   (
                   child: Column
@@ -124,6 +124,7 @@ class _LoginInScreenState extends State<SubmitForm>
                                               if(snapshot.data.data == true)
                                               {
                                                 user_Credentials.isloggedIn = true;
+                                                user_Credentials.user_id = idController.text;
                                                 if(user_Credentials.user == 1)
                                                   return StudentHome(user_Credentials);
                                                 else

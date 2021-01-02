@@ -45,6 +45,13 @@ dev_dependencies:
 flutter:
   assets:
     - assets/logo/zjgsu.png
+    - assets/logo/studentInfo.svg
+    - assets/logo/scores.svg
+    - assets/logo/rAndA.svg
+    - assets/logo/clipboard.svg
+    - assets/logo/courseList.svg
+    - assets/logo/teacherLogo.svg
+    - assets/logo/send.svg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

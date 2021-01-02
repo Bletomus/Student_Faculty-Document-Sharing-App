@@ -2,7 +2,7 @@
 
 class ApiConstants
 {
-  static final baseUrl = "https://276def0f396d.ngrok.io/";
+  static final baseUrl = "https://0e47e3e1b8fd.ngrok.io/";
   final baseTeacherApi = "api/v1/teachers/";
   final baseStudentApi = "api/v1/students/";
   final String validateStudentEndpoint = "validate_student/";

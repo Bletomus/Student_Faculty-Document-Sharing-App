@@ -20,6 +20,9 @@ dependencies:
     path: ../networking
   repository:
     path: ../repository
+  persistent_bottom_nav_bar: any
+  flutter_svg: ^0.19.2+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
