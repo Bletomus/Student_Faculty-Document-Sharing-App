@@ -37,7 +37,20 @@ class BaseApiProvider
     }
   }
 
-
+  Future<dynamic> getUserInformation(String url) async
+  {
+    var jsonResponse;
+    try
+    {
+      final response = await http.get(url);
+      jsonResponse  = apiResponse(response);
+    }
+    on SocketException
+    {
+      throw FetchDataException("No internet connection");
+    }
+    return jsonResponse;
+  }
   dynamic isAvailableGetResponse(http.Response response)
   {
     switch(response.statusCode)
@@ -54,17 +67,19 @@ class BaseApiProvider
   Future<dynamic> isUserAvailable(String url) async
   {
     var isAvailable = false;
-    //try
-    //{
+    try
+    {
       final response = await http.get(url);
       isAvailable = isAvailableGetResponse(response);
-   // }
-    //on SocketException
-    //{
-      //throw FetchDataException("No internet connection");
-    //}
+    }
+    on SocketException
+    {
+      throw FetchDataException("No internet connection");
+    }
     return isAvailable;
   }
+
+
 }
 
 class StudentApiProvider extends BaseApiProvider

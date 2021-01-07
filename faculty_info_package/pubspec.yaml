@@ -1,5 +1,5 @@
-name: repository
-description: Repository Code
+name: faculty_info_package
+description: Widgets that show Faculty Information
 version: 0.0.1
 author:
 homepage:
@@ -11,19 +11,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
+  blocs:
+    path: ../blocs
   models:
     path: ../models
+  networking:
+    path: ../networking
+  user_info_widgets:
+    path: ../user_info_widgets
+  general_widgets:
+    path: ../general_widgets
+  app_constants:
+    path: ../app_constants
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
+  blocs:
+    path: ../blocs
   models:
     path: ../models
+  networking:
+    path: ../networking
+  user_info_widgets:
+    path: ../user_info_widgets
+  general_widgets:
+    path: ../general_widgets
+  app_constants:
+    path: ../app_constants
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

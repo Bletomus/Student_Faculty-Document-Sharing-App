@@ -20,6 +20,14 @@ dependencies:
     path: ../networking
   repository:
     path: ../repository
+  student_info_widgets:
+    path: ../student_info_widgets
+  faculty_info_package:
+    path: ../faculty_info_package
+  general_widgets:
+    path: ../general_widgets
+  app_constants:
+    path: ../app_constants
   persistent_bottom_nav_bar: any
   flutter_svg: ^0.19.2+1
 
@@ -35,6 +43,16 @@ dev_dependencies:
     path: ../networking
   repository:
     path: ../repository
+  student_info_widgets:
+    path: ../student_info_widgets
+  user_info_widgets:
+    path: ../user_info_widgets
+  faculty_info_package:
+    path: ../faculty_info_package
+  general_widgets:
+    path: ../general_widgets
+  app_constants:
+    path: ../app_constants
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

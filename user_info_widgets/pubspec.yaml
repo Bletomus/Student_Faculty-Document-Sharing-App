@@ -1,5 +1,5 @@
-name: repository
-description: Repository Code
+name: user_info_widgets
+description: Widgets used to display user information
 version: 0.0.1
 author:
 homepage:
@@ -11,19 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
-  models:
-    path: ../models
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
-  models:
-    path: ../models
+  app_constants:
+    path: ../app_constants
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

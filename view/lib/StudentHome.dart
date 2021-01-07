@@ -1,16 +1,15 @@
+import 'package:app_constants/LoginInformation.dart';
+import 'package:app_constants/ThemeConstants.dart';
+import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/CenterBox.dart';
+import 'package:general_widgets/CenterOptions.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:view/SelectionConstants.dart';
+import 'package:student_info_widgets/StudentInformation.dart';
 import 'package:view/StudentCourseList.dart';
-import 'package:view/StudentInformation.dart';
 import 'package:view/StudentSemesterSchedule.dart';
 import 'package:view/StudentSemesterScores.dart';
-import 'package:view/s_f_d_s_m_s_icons_icons.dart';
-
-import 'CenterBox.dart';
-import 'CenterOptions.dart';
-import 'LogoConstants.dart';
 import 'StudentRAndA.dart';
 
 LoginVariables userCredentials;
@@ -126,7 +125,7 @@ class StudentApplicationCenter extends StatelessWidget
   ];
   List<Widget> studentWidgets =
   [
-    StudentInformation(),
+    StudentInformation(userCredentials),
     StudentSemesterScores(),
     StudentCourseList(),
     StudentSemesterSchedule(),
@@ -143,7 +142,7 @@ class StudentApplicationCenter extends StatelessWidget
       {
         return GestureDetector
         (
-          child:CenterBox(selection[index]),
+          child:CenterBoxWidget(selection[index]),
           onTap:
           ()
           {

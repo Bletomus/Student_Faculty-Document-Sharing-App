@@ -1,5 +1,5 @@
-name: repository
-description: Repository Code
+name: app_constants
+description: Constant variables that will used through out the app
 version: 0.0.1
 author:
 homepage:
@@ -11,19 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
-  models:
-    path: ../models
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.12.0+2
-  networking:
-    path: ../networking
-  models:
-    path: ../models
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

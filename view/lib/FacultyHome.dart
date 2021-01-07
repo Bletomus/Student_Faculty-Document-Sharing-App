@@ -1,15 +1,15 @@
+import 'package:app_constants/ThemeConstants.dart';
+import 'package:faculty_info_package/FacultyInformation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/CenterBox.dart';
+import 'package:general_widgets/CenterOptions.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:view/FacultyInformation.dart';
 import 'package:view/FacultyRandA.dart';
 import 'package:view/FacultySendFiles.dart';
-import 'package:view/LogoConstants.dart';
-import 'package:view/s_f_d_s_m_s_icons_icons.dart';
+import 'package:app_constants/LoginInformation.dart';
+import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
 
-import 'CenterBox.dart';
-import 'CenterOptions.dart';
-import 'SelectionConstants.dart';
 LoginVariables userCredentials;
 
 class FacultyHome extends StatefulWidget
@@ -45,7 +45,7 @@ class _HomeState extends State<FacultyHome>
   List<PersistentBottomNavBarItem> _navBarsItems =
   [
     PersistentBottomNavBarItem
-      (
+    (
       icon: Icon(SFDSMSIcons.home),
       title: ("Home"),
       activeColor: CupertinoColors.activeBlue,
@@ -130,7 +130,7 @@ class FacultyApplicationCenter extends StatelessWidget
   ];
   List<Widget> facultyWidgets =
   [
-    FacultyInformation(),
+    FacultyInformation(userCredentials),
     FacultyRAndA(),
     FacultySendFiles(),
   ];
@@ -145,7 +145,7 @@ class FacultyApplicationCenter extends StatelessWidget
       {
         return GestureDetector
         (
-          child:CenterBox(selection[index]),
+          child:CenterBoxWidget(selection[index]),
           onTap:
           ()
           {

@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:app_constants/ThemeConstants.dart';
 import 'CenterOptions.dart';
 
-class CenterBox extends StatelessWidget
+class CenterBoxWidget extends StatelessWidget
 {
   CenterOptions item;
 
-  CenterBox(this.item);
+  CenterBoxWidget(this.item);
 
   @override
   Widget build(BuildContext context)
@@ -26,7 +27,7 @@ class CenterBox extends StatelessWidget
               (
               child: SvgPicture.asset(item.image),
             ),
-            Text.rich(TextSpan(text: item.option, style: TextStyle(fontFamily: "Poppins")),textAlign: TextAlign.center,),
+            Text.rich(TextSpan(text: item.option,style: TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor)),textAlign: TextAlign.center,),
           ],
         ),
       ),
