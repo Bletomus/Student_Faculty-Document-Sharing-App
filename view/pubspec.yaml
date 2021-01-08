@@ -28,6 +28,10 @@ dependencies:
     path: ../general_widgets
   app_constants:
     path: ../app_constants
+  student_scores_widgets:
+    path: ../student_scores_widgets
+  courses_widget:
+    path: ../courses_widget
   persistent_bottom_nav_bar: any
   flutter_svg: ^0.19.2+1
 
@@ -53,6 +57,8 @@ dev_dependencies:
     path: ../general_widgets
   app_constants:
     path: ../app_constants
+  student_scores_widgets:
+    path: ../student_scores_widgets
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

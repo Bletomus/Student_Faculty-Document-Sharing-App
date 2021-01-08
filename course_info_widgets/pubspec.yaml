@@ -1,5 +1,5 @@
-name: general_widgets
-description: Widgets used throughout the app
+name: course_info_widgets
+description: Widgets used by Course List and Course Scores
 version: 0.0.1
 author:
 homepage:
@@ -11,23 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^0.19.2+1
   app_constants:
     path: ../app_constants
-  user_info_widgets:
-    path: ../user_info_widgets
-  networking:
-    path: ../networking
+  models:
+    path: ../models
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_svg: ^0.19.2+1
-  app_constants:
-    path: ../app_constants
-  user_info_widgets:
-    path: ../user_info_widgets
-  networking:
-    path: ../networking
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -7,11 +7,10 @@ import 'package:general_widgets/CenterBox.dart';
 import 'package:general_widgets/CenterOptions.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:student_info_widgets/StudentInformation.dart';
-import 'package:view/StudentCourseList.dart';
 import 'package:view/StudentSemesterSchedule.dart';
-import 'package:view/StudentSemesterScores.dart';
+import 'package:courses_widget/StudentCourseList.dart';
 import 'StudentRAndA.dart';
-
+import 'package:student_scores_widgets/StudentSemesterScores.dart';
 LoginVariables userCredentials;
 class StudentHome extends StatefulWidget
 {
@@ -126,8 +125,8 @@ class StudentApplicationCenter extends StatelessWidget
   List<Widget> studentWidgets =
   [
     StudentInformation(userCredentials),
-    StudentSemesterScores(),
-    StudentCourseList(),
+    StudentSemesterScores(userCredentials),
+    StudentCourseList(userCredentials),
     StudentSemesterSchedule(),
     StudentRAndA(),
   ];

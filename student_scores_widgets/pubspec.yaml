@@ -1,5 +1,5 @@
-name: general_widgets
-description: Widgets used throughout the app
+name: student_scores_widgets
+description: Student scores widgets
 version: 0.0.1
 author:
 homepage:
@@ -11,24 +11,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^0.19.2+1
   app_constants:
     path: ../app_constants
-  user_info_widgets:
-    path: ../user_info_widgets
+  general_widgets:
+    path: ../general_widgets
   networking:
     path: ../networking
+  user_info_widgets:
+    path: ../user_info_widgets
+  blocs:
+    path: ../blocs
+  models:
+    path: ../models
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_svg: ^0.19.2+1
   app_constants:
     path: ../app_constants
-  user_info_widgets:
-    path: ../user_info_widgets
+  general_widgets:
+    path: ../general_widgets
   networking:
     path: ../networking
-
+  user_info_widgets:
+    path: ../user_info_widgets
+  blocs:
+    path: ../blocs
+  models:
+    path: ../models
+  course_info_widgets:
+    path: ../course_info_widgets
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

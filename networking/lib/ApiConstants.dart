@@ -2,14 +2,15 @@
 
 class ApiConstants
 {
-  static final baseUrl = "https://2ee8f9822614.ngrok.io/";
+  static final baseUrl = "https://cd65cfce911c.ngrok.io/";
   final baseTeacherApi = "api/v1/teachers/";
   final baseStudentApi = "api/v1/students/";
   final String validateStudentEndpoint = "validate_student/";
   final String validateTeacherEndpoint = "validate_teacher/";
   final String getStudentInformationEndpoint ="get_student_details/";
   final String getFacultyInformationEndpoint ="get_faculty_details/";
-
+  final String getStudentScores = "get_Student_Scores/";
+  final String getStudentCourses = "get_Courses/";
   int choice = 1;
 
   ApiConstants(this.choice);
@@ -37,5 +38,15 @@ class ApiConstants
       return getBaseUrl() + getFacultyInformationEndpoint;
   }
 
+  String getStudentScoresEndpoint()
+  {
+    if(choice == 1)
+      return getBaseUrl() + getStudentScores;
+  }
 
+  String getStudentCoursesEndpoint()
+  {
+    if(choice == 1)
+      return getBaseUrl() + getStudentCourses;
+  }
 }

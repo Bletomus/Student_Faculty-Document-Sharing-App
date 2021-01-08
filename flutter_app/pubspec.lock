@@ -64,6 +64,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  course_info_widgets:
+    dependency: transitive
+    description:
+      path: "../course_info_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  courses_widget:
+    dependency: transitive
+    description:
+      path: "../courses_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -237,6 +251,13 @@ packages:
     dependency: transitive
     description:
       path: "../student_info_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_scores_widgets:
+    dependency: transitive
+    description:
+      path: "../student_scores_widgets"
       relative: true
     source: path
     version: "0.0.1"

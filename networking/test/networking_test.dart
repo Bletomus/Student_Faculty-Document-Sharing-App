@@ -16,6 +16,7 @@ void main()
     debugPrint(url);
     expect(await api.isUserAvailable(url), true,);
 
+    /*
     // Second test to get user info
     ApiConstants apiConstants2 = ApiConstants(1);
     var url2 = apiConstants2.getUserInformationEndpoint() + '1712510101';
@@ -25,7 +26,26 @@ void main()
     var re = await api2.getUserInformation(url2);
 
 
-    expect(re == null, false,);
+    //expect(re == null, false,);
 
+    // Third test to get Student Scores
+    ApiConstants apiConstants3 = ApiConstants(1);
+    var url3 = apiConstants3.getStudentScoresEndpoint() + '1712510101';
+    ApiFactory apiFactory3 = ApiFactory(1);
+    dynamic api3 = apiFactory3.getProvider();
+    debugPrint(url3);
+    var re1 = await api3.getUserInformation(url3);
+
+
+    expect(re1 == null, false,);
+    */
+    //Fourth Test to get Courses
+    ApiConstants apiConstants3 = ApiConstants(1);
+    var url3 = apiConstants3.getStudentCoursesEndpoint() + '1712510101';
+    ApiFactory apiFactory3 = ApiFactory(1);
+    dynamic api3 = apiFactory3.getProvider();
+    debugPrint(url3);
+    var re1 = await api3.getUserInformation(url3);
+    expect(re1 == null, false,);
   });
 }
