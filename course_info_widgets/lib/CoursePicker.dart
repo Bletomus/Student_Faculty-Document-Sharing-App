@@ -22,7 +22,7 @@ class CoursePicker
         "Credits: ",
       ];
     }
-    else
+    else if(type == 2)
       return
       [
         "Year: ",
@@ -30,6 +30,13 @@ class CoursePicker
         "Course: ",
         "Elective: ",
         "Module: ",
+      ];
+    else
+      return
+      [
+        "Course Name: ",
+        "Building: ",
+        "Time: ",
       ];
   }
 
@@ -48,7 +55,7 @@ class CoursePicker
         course.credits.toString(),
       ];
     }
-    else
+    else if(type == 2)
     {
       return
         [
@@ -59,6 +66,13 @@ class CoursePicker
           course.module.toString(),
         ];
     }
+    else
+    return
+    [
+      course.scheduledCourse.courseName,
+      course.scheduledBuilding.building + " " + course.scheduledBuilding.roomNumber.toString(),
+      course.scheduledTime,
+    ];
 
   }
 }

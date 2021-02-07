@@ -12,12 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.19.2+1
+  file_picker: ^2.1.5+1
+  blocs:
+    path: ../blocs
+  download_widget:
+    path: ../download_widget
+  models:
+    path: ../models
   app_constants:
     path: ../app_constants
   user_info_widgets:
     path: ../user_info_widgets
   networking:
     path: ../networking
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

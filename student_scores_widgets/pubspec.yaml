@@ -23,6 +23,8 @@ dependencies:
     path: ../blocs
   models:
     path: ../models
+  course_info_widgets:
+    path: ../course_info_widgets
 dev_dependencies:
   flutter_test:
     sdk: flutter

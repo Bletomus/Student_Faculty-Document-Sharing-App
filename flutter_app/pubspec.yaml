@@ -26,6 +26,7 @@ dependencies:
   http: ^0.12.0+2
   view:
     path: ../view
+  flutter_downloader: ^1.5.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -36,7 +37,7 @@ dev_dependencies:
   http: ^0.12.0+2
   view:
     path: ../view
-
+  open_file: ^3.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,13 +46,15 @@ dev_dependencies:
 flutter:
   assets:
     - assets/logo/zjgsu.png
-    - assets/logo/studentInfo.svg
-    - assets/logo/scores.svg
-    - assets/logo/rAndA.svg
-    - assets/logo/clipboard.svg
-    - assets/logo/courseList.svg
-    - assets/logo/teacherLogo.svg
-    - assets/logo/send.svg
+    - assets/icons/studentInfo.svg
+    - assets/icons/scores.svg
+    - assets/icons/rAndA.svg
+    - assets/icons/clipboard.svg
+    - assets/icons/courseList.svg
+    - assets/icons/teacherLogo.svg
+    - assets/icons/send.svg
+    - assets/icons/document.svg
+    - assets/icons/down_arrow.svg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

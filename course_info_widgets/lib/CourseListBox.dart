@@ -33,6 +33,15 @@ class CourseBox extends StatelessWidget
 {
   final dynamic course;
   CourseBox({Key key, this.course}) : super(key:key);
+  List<Widget> rows()
+  {
+    List<Widget> _rows = [];
+    for(var index = 0;index < fieldItems.length;index++)
+    {
+      _rows.add(RowWidget(heading: fieldItems[index],value: valueItems[index],));
+    }
+    return _rows;
+  }
   @override
   Widget build(BuildContext context)
   {
@@ -47,7 +56,13 @@ class CourseBox extends StatelessWidget
       child:Card
         (
 
-        child: Row
+        child: Column
+        (
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: rows(),
+        ),
+        /*Row
           (
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -63,10 +78,51 @@ class CourseBox extends StatelessWidget
             Expanded(child: ListContent()),
           ],
         ),
+
+         */
       ),
     );
   }
 }
+
+class RowWidget extends StatelessWidget
+{
+  final String heading;
+  final String value;
+  RowWidget({Key key, this.heading,this.value}) : super(key:key);
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Row
+    (
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: <Widget>
+      [
+        SizedBox
+        (
+          width: ConstantVariables.boxWidth,
+          height: ConstantVariables.boxHeight,
+          child:Align
+          (
+            alignment: Alignment.topLeft,
+            child: Text.rich(TextSpan(text: heading,style: TextStyle(color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.fieldHeaderTextSize,fontFamily: "Poppins"),),textAlign: TextAlign.start,),
+          ),
+        ),
+        Align
+        (
+          alignment: Alignment.topRight,
+          child:Text.rich(TextSpan(text: value,style: TextStyle(color: ConstantVariables.fieldTextColor,fontSize: ConstantVariables.fieldTextSize,fontFamily: "Poppins",fontWeight: FontWeight.bold),),textAlign: TextAlign.end,),
+        ),
+      ],
+    );
+  }
+
+}
+
+/*
 
 class ListHeadings extends StatelessWidget
 {
@@ -110,3 +166,4 @@ class ListContent extends StatelessWidget
     );
   }
 }
+*/

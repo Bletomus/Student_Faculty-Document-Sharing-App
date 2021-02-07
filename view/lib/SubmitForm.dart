@@ -92,9 +92,14 @@ class _LoginInScreenState extends State<SubmitForm>
                       ),
                       UserSelectionDropDownBox(),
 
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.blueAccent,
+                      ElevatedButton
+                      (
+                        style: ElevatedButton.styleFrom
+                        (
+                          onPrimary: Colors.white,
+                          primary: Colors.blueAccent,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),),
+                        ),
                         child: Text.rich(TextSpan(text: "Search", style: TextStyle(fontFamily: "Poppins"))),
                         onPressed:
                             ()
@@ -123,6 +128,7 @@ class _LoginInScreenState extends State<SubmitForm>
                                             case Status.COMPLETED:
                                               if(snapshot.data.data == true)
                                               {
+                                                debugPrint(snapshot.data.data.toString());
                                                 user_Credentials.isloggedIn = true;
                                                 user_Credentials.user_id = idController.text;
                                                 if(user_Credentials.user == 1)
@@ -170,7 +176,7 @@ class _LoginInScreenState extends State<SubmitForm>
 
                           }
                         },
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),),
+
                       ),
                     ],
                   ),

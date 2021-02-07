@@ -7,11 +7,14 @@ import 'package:general_widgets/CenterBox.dart';
 import 'package:general_widgets/CenterOptions.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:student_info_widgets/StudentInformation.dart';
-import 'package:view/StudentSemesterSchedule.dart';
 import 'package:courses_widget/StudentCourseList.dart';
-import 'StudentRAndA.dart';
 import 'package:student_scores_widgets/StudentSemesterScores.dart';
+import 'package:student_schedule_widget/StudentSemesterSchedule.dart';
+import 'package:student_notifications_widget/StudentNotificationsPage.dart';
+import 'package:student_options_widget/StudentOptions.dart';
+import 'package:student_upload_download_widget/StudentRAndA.dart';
 LoginVariables userCredentials;
+
 class StudentHome extends StatefulWidget
 {
 
@@ -40,7 +43,7 @@ class _HomeState extends State<StudentHome>
 
   List<Widget> _widgetOptions = <Widget>
   [
-    StudentNotifications(),
+    StudentNotificationsPage(userCredentials),
     StudentApplicationCenter(),
     StudentOptions(),
   ];
@@ -116,19 +119,19 @@ class StudentApplicationCenter extends StatelessWidget
 {
   List<CenterOptions> selection =
   [
-    CenterOptions("Student information","assets/logo/studentInfo.svg"),
-    CenterOptions("Semester Scores","assets/logo/scores.svg"),
-    CenterOptions("Course List","assets/logo/courseList.svg"),
-    CenterOptions("Semester Schedule","assets/logo/clipboard.svg"),
-    CenterOptions("Course resources and Assignments","assets/logo/rAndA.svg"),
+    CenterOptions("Student information","assets/icons/studentInfo.svg"),
+    CenterOptions("Semester Scores","assets/icons/scores.svg"),
+    CenterOptions("Course List","assets/icons/courseList.svg"),
+    CenterOptions("Semester Schedule","assets/icons/clipboard.svg"),
+    CenterOptions("Course resources and Assignments","assets/icons/rAndA.svg"),
   ];
   List<Widget> studentWidgets =
   [
     StudentInformation(userCredentials),
     StudentSemesterScores(userCredentials),
     StudentCourseList(userCredentials),
-    StudentSemesterSchedule(),
-    StudentRAndA(),
+    StudentSemesterSchedule(userCredentials),
+    StudentRAndA(userCredentials: userCredentials),
   ];
   @override
   Widget build(BuildContext context)
@@ -160,33 +163,3 @@ class StudentApplicationCenter extends StatelessWidget
 }
 
 
-
-class StudentNotifications extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-
-    return Center
-    (
-      child: Text('Student Notifications'),
-    );
-
-  }
-
-}
-
-
-class StudentOptions extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-
-    return Center
-    (
-      child: Text('Student Options'),
-    );
-  }
-
-}

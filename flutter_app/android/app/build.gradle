@@ -7,9 +7,7 @@ if (localPropertiesFile.exists()) {
 }
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
+
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
@@ -38,8 +36,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "flutterapp.leon.flutter_app"
-        minSdkVersion 16
+        applicationId "flutterapp.leon.sfdss"
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

@@ -32,6 +32,20 @@ dependencies:
     path: ../student_scores_widgets
   courses_widget:
     path: ../courses_widget
+  student_schedule_widget:
+    path: ../student_schedule_widget
+  teaches_widget:
+    path: ../teaches_widget
+  student_notifications_widget:
+    path: ../student_notifications_widget
+  faculty_notifications_widget:
+    path: ../faculty_notifications_widget
+  student_options_widget:
+    path: ../student_options_widget
+  upload_download_widget:
+    path: ../upload_download_widget
+  student_upload_download_widget:
+    path: ../student_upload_download_widget
   persistent_bottom_nav_bar: any
   flutter_svg: ^0.19.2+1
 
@@ -57,6 +71,14 @@ dev_dependencies:
     path: ../general_widgets
   app_constants:
     path: ../app_constants
+  student_schedule_widget:
+    path: ../student_schedule_widget
+  teaches_widget:
+    path: ../teaches_widget
+  student_notifications_widget:
+    path: ../student_notifications_widget
+  faculty_notifications_widget:
+    path: ../faculty_notifications_widget
   student_scores_widgets:
     path: ../student_scores_widgets
 # For information on the generic Dart part of this file, see the

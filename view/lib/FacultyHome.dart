@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:general_widgets/CenterBox.dart';
 import 'package:general_widgets/CenterOptions.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:view/FacultyRandA.dart';
-import 'package:view/FacultySendFiles.dart';
+import 'package:upload_download_widget/FacultyRandA.dart';
 import 'package:app_constants/LoginInformation.dart';
 import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
-
+import 'package:faculty_notifications_widget/FacultyNotificationsPage.dart';
+import 'package:teaches_widget/FacultyOptions.dart';
 LoginVariables userCredentials;
 
 class FacultyHome extends StatefulWidget
@@ -70,13 +70,14 @@ class _HomeState extends State<FacultyHome>
   static List<Widget> _widgetOptions = <Widget>
   [
     FacultyApplicationCenter(),
-    FacultyNotifications(),
-    FacultyOptions(),
+    FacultyNotificationsPage(userCredentials),
+    FacultyOptions(userCredentials),
   ];
   PersistentTabController _controller;
   @override
   void initState()
   {
+    super.initState();
     _controller = PersistentTabController(initialIndex: 0);
   }
   @override
@@ -122,17 +123,15 @@ class _HomeState extends State<FacultyHome>
 
 class FacultyApplicationCenter extends StatelessWidget
 {
-  List<CenterOptions> selection =
+  final List<CenterOptions> selection =
   [
-    CenterOptions("Faculty Member information","assets/logo/teacherLogo.svg"),
-    CenterOptions("Course Resources and Assignments","assets/logo/rAndA.svg"),
-    CenterOptions("Share files with Students","assets/logo/send.svg"),
+    CenterOptions("Faculty Member information","assets/icons/teacherLogo.svg"),
+    CenterOptions("Course Resources and Assignments","assets/icons/rAndA.svg"),
   ];
-  List<Widget> facultyWidgets =
+  final List<Widget> facultyWidgets =
   [
     FacultyInformation(userCredentials),
-    FacultyRAndA(),
-    FacultySendFiles(),
+    FacultyRAndA(userCredentials),
   ];
   @override
   Widget build(BuildContext context)
@@ -164,31 +163,5 @@ class FacultyApplicationCenter extends StatelessWidget
 
 }
 
-class FacultyNotifications extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
 
-    return Center
-      (
-      child: Text('Student Notifications'),
-    );
 
-  }
-
-}
-
-class FacultyOptions extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-
-    return Center
-      (
-      child: Text('Student Options'),
-    );
-  }
-
-}

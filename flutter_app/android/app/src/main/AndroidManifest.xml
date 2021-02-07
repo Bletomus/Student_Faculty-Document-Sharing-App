@@ -1,9 +1,43 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="flutterapp.leon.flutter_app">
     <uses-permission android:name="android.permission.INTERNET" />
-   <application
-        android:label="flutter_app"
-        android:icon="@mipmap/ic_launcher">
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:label="SFDSS"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+        <provider
+            android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
+            android:authorities="${applicationId}.flutter_downloader.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            tools:node="remove" />
+
+        <provider
+            android:name="vn.hunghd.flutterdownloader.FlutterDownloaderInitializer"
+            android:authorities="${applicationId}.flutter-downloader-init"
+            android:exported="false">
+            <!-- changes this number to configure the maximum number of concurrent tasks -->
+            <meta-data
+                android:name="vn.hunghd.flutterdownloader.MAX_CONCURRENT_TASKS"
+                android:value="5" />
+        </provider>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
