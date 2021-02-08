@@ -13,13 +13,13 @@ The applications uses Student Faculty Document Sharing Api to connect to a Djang
 - _Skills_ : Flutter 
 
 ### Features
-- View student information : Students are able to view information about themselves that they provided to the school
-- View Semester Scores : Students will be able to view the scores they recieved upon finishing their exams
-- View Course List : Students will be able to view a list of the courses they will take for the duration of their study
-- View Semester Schedule : Students will be able to view the schedule that their classes
-- View School Information : Students and teachers will be able to view the about page of the school
-- View Event Notifications : Students and teachers will be able to view notifications of the events and classes that the school posted
-- View and upload Course resources and Assignments : Students will be able to upload and download files as per requirement of their class
+- _View student information_ : Students are able to view information about themselves that they provided to the school
+- _View Semester Scores_ : Students will be able to view the scores they recieved upon finishing their exams
+- _View Course List_ : Students will be able to view a list of the courses they will take for the duration of their study
+- _View Semester Schedule_ : Students will be able to view the schedule that their classes
+- _View School Information_ : Students and teachers will be able to view the about page of the school
+- _View Event Notifications_ : Students and teachers will be able to view notifications of the events and classes that the school posted
+- _View and upload Course resources and Assignments_ : Students will be able to upload and download files as per requirement of their class
  
 ## Contact Us
 To view my other projects just follow this [link](https://bletomus.github.io/) or send me an email at leonkanyayi@yahoo.com
