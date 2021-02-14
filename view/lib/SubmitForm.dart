@@ -3,12 +3,13 @@ import 'package:app_constants/ThemeConstants.dart';
 import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
 import 'package:blocs/blocs.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:networking/Response.dart';
 import 'FacultyHome.dart';
 import 'StudentHome.dart';
 
 
-LoginVariables user_Credentials = LoginVariables();
+LoginVariables userCredentials = LoginVariables();
 class SubmitForm extends StatefulWidget
 {
 
@@ -25,7 +26,6 @@ class _LoginInScreenState extends State<SubmitForm>
   @override
   void dispose()
   {
-    // Clean up the controller when the widget is disposed.
     idController.dispose();
     super.dispose();
   }
@@ -106,7 +106,7 @@ class _LoginInScreenState extends State<SubmitForm>
                         {
                           if(_formKey.currentState.validate())
                           {
-                              bloc =ExistenceBloc(user_Credentials.user,idController.text);
+                              bloc =ExistenceBloc(userCredentials.user,idController.text);
                               Navigator.push
                               (
                                 context,MaterialPageRoute
@@ -123,60 +123,55 @@ class _LoginInScreenState extends State<SubmitForm>
                                           switch (snapshot.data.status)
                                           {
                                             case Status.LOADING:
-
+                                              return Scaffold
+                                                (
+                                                body: Center
+                                                (
+                                                  child:CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),),
+                                                ),
+                                              );
                                               break;
                                             case Status.COMPLETED:
                                               if(snapshot.data.data == true)
                                               {
                                                 debugPrint(snapshot.data.data.toString());
-                                                user_Credentials.isloggedIn = true;
-                                                user_Credentials.user_id = idController.text;
-                                                if(user_Credentials.user == 1)
-                                                  return StudentHome(user_Credentials);
+                                                userCredentials.isloggedIn = true;
+                                                userCredentials.user_id = idController.text;
+                                                if(userCredentials.user == 1)
+                                                  return StudentHome(userCredentials);
                                                 else
-                                                  return FacultyHome(user_Credentials);
+                                                  return FacultyHome(userCredentials);
                                               }
                                               else
                                               {
-                                                return SubmitForm();
+                                                WidgetsBinding.instance.addPostFrameCallback
+                                                (
+                                                  (_)
+                                                  {
+                                                    DialogBox.showMessage(context, "Error Loading", "The user you entered does not exist in the database! Please enter a valid User ID");
+                                                  }
+                                                );
                                               }
-
-
                                               break;
                                             default:
-                                            //case Status.ERROR:
-                                              return Scaffold
+                                              WidgetsBinding.instance.addPostFrameCallback
                                               (
-                                                body: Center
-                                                (
-                                                  child:Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),),
-                                                ),
+                                                (_)
+                                                {
+                                                  DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                                                }
                                               );
-
                                               break;
                                           }
                                         }
-                                        return Scaffold
-                                        (
-                                          body: Center
-                                          (
-                                              child:CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),),
-                                          ),
-                                        );
+                                        return SubmitForm();
                                       },
                                     );
                                   },
                                 )
                               );
-
-
-                              //user_Credentials.user_id = idController.text;
-                              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(user_Credentials.user_id)));
-                              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Failed')));
-
                           }
                         },
-
                       ),
                     ],
                   ),
@@ -246,10 +241,10 @@ class _UserDropDownState extends State<UserSelectionDropDownBox>
         {
           setState
             (
-                  ()
+              ()
               {
                 _value = value;
-                user_Credentials.user = value;
+                userCredentials.user = value;
               }
           );
         },
