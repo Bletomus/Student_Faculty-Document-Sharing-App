@@ -43,13 +43,20 @@ class _HomeState extends State<StudentHome>
 
   List<Widget> _widgetOptions = <Widget>
   [
-    StudentNotificationsPage(userCredentials),
     StudentApplicationCenter(),
+    StudentNotificationsPage(userCredentials),
     StudentOptions(),
   ];
 
   List<PersistentBottomNavBarItem> _navBarsItems =
   [
+    PersistentBottomNavBarItem
+      (
+      icon: Icon(SFDSMSIcons.data_center),
+      title: ("Center"),
+      activeColor: CupertinoColors.activeBlue,
+      inactiveColor: CupertinoColors.systemGrey,
+    ),
     PersistentBottomNavBarItem
     (
       icon: Icon(SFDSMSIcons.home),
@@ -57,13 +64,7 @@ class _HomeState extends State<StudentHome>
       activeColor: CupertinoColors.activeBlue,
       inactiveColor: CupertinoColors.systemGrey,
     ),
-    PersistentBottomNavBarItem
-    (
-      icon: Icon(SFDSMSIcons.data_center),
-      title: ("Center"),
-      activeColor: CupertinoColors.activeBlue,
-      inactiveColor: CupertinoColors.systemGrey,
-    ),
+
     PersistentBottomNavBarItem
     (
       icon: Icon(SFDSMSIcons.settings),

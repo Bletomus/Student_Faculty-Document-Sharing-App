@@ -45,16 +45,16 @@ class _HomeState extends State<FacultyHome>
   List<PersistentBottomNavBarItem> _navBarsItems =
   [
     PersistentBottomNavBarItem
-    (
-      icon: Icon(SFDSMSIcons.home),
-      title: ("Home"),
+      (
+      icon: Icon(SFDSMSIcons.data_center),
+      title: ("Center"),
       activeColor: CupertinoColors.activeBlue,
       inactiveColor: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem
-      (
-      icon: Icon(SFDSMSIcons.data_center),
-      title: ("Center"),
+    (
+      icon: Icon(SFDSMSIcons.home),
+      title: ("Home"),
       activeColor: CupertinoColors.activeBlue,
       inactiveColor: CupertinoColors.systemGrey,
     ),
