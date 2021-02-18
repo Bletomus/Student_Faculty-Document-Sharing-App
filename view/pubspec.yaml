@@ -26,8 +26,7 @@ dependencies:
     path: ../faculty_info_package
   general_widgets:
     path: ../general_widgets
-  app_constants:
-    path: ../app_constants
+
   student_scores_widgets:
     path: ../student_scores_widgets
   courses_widget:
@@ -52,35 +51,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.12.0+2
-  blocs:
-    path: ../blocs
-  models:
-    path: ../models
-  networking:
-    path: ../networking
-  repository:
-    path: ../repository
-  student_info_widgets:
-    path: ../student_info_widgets
   user_info_widgets:
     path: ../user_info_widgets
-  faculty_info_package:
-    path: ../faculty_info_package
-  general_widgets:
-    path: ../general_widgets
-  app_constants:
-    path: ../app_constants
-  student_schedule_widget:
-    path: ../student_schedule_widget
-  teaches_widget:
-    path: ../teaches_widget
-  student_notifications_widget:
-    path: ../student_notifications_widget
-  faculty_notifications_widget:
-    path: ../faculty_notifications_widget
-  student_scores_widgets:
-    path: ../student_scores_widgets
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

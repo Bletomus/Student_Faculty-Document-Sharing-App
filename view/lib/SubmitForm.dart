@@ -12,17 +12,16 @@ import 'StudentHome.dart';
 LoginVariables userCredentials = LoginVariables();
 class SubmitForm extends StatefulWidget
 {
-
+  final String title = 'Campus Life';
   @override
-  _LoginInScreenState createState() => _LoginInScreenState('Campus Life');
+  _LoginInScreenState createState() => _LoginInScreenState();
 }
 class _LoginInScreenState extends State<SubmitForm>
 {
-  _LoginInScreenState(this.title);
   final _formKey = GlobalKey<FormState>();
-  final String title;
   ExistenceBloc bloc;
   TextEditingController idController = TextEditingController();
+
   @override
   void dispose()
   {
@@ -37,7 +36,7 @@ class _LoginInScreenState extends State<SubmitForm>
       key: _formKey,
       child: Scaffold
         (
-        appBar: AppBar(title: Text(this.title)),
+        appBar: AppBar(title: Text(widget.title)),
         body: Center
           (
           child: Container

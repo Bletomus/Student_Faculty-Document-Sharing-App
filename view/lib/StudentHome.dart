@@ -1,10 +1,10 @@
 import 'package:app_constants/LoginInformation.dart';
 import 'package:app_constants/ThemeConstants.dart';
-import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:general_widgets/CenterBox.dart';
 import 'package:general_widgets/CenterOptions.dart';
+import 'package:general_widgets/NavigationBar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:student_info_widgets/StudentInformation.dart';
 import 'package:courses_widget/StudentCourseList.dart';
@@ -13,66 +13,38 @@ import 'package:student_schedule_widget/StudentSemesterSchedule.dart';
 import 'package:student_notifications_widget/StudentNotificationsPage.dart';
 import 'package:student_options_widget/StudentOptions.dart';
 import 'package:student_upload_download_widget/StudentRAndA.dart';
-LoginVariables userCredentials;
+
 
 class StudentHome extends StatefulWidget
 {
-
-
-  StudentHome(LoginVariables loginVariables)
-  {
-    userCredentials = loginVariables;
-  }
+  StudentHome({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
   @override
   _HomeState createState() => _HomeState();
-
 
 }
 
 class _HomeState extends State<StudentHome>
 {
   PersistentTabController _controller;
-
+  static LoginVariables _userCredentials ;
 
   @override
   void initState()
   {
+    super.initState();
+    _userCredentials = widget.userCredentials;
     _controller = PersistentTabController(initialIndex: 0);
   }
 
   List<Widget> _widgetOptions = <Widget>
   [
-    StudentApplicationCenter(),
-    StudentNotificationsPage(userCredentials),
+    StudentApplicationCenter(userCredentials: _userCredentials,),
+    StudentNotificationsPage(userCredentials: _userCredentials),
     StudentOptions(),
   ];
 
-  List<PersistentBottomNavBarItem> _navBarsItems =
-  [
-    PersistentBottomNavBarItem
-      (
-      icon: Icon(SFDSMSIcons.data_center),
-      title: ("Center"),
-      activeColor: CupertinoColors.activeBlue,
-      inactiveColor: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem
-    (
-      icon: Icon(SFDSMSIcons.home),
-      title: ("Home"),
-      activeColor: CupertinoColors.activeBlue,
-      inactiveColor: CupertinoColors.systemGrey,
-    ),
-
-    PersistentBottomNavBarItem
-    (
-      icon: Icon(SFDSMSIcons.settings),
-      title: ("Settings"),
-      activeColor: CupertinoColors.activeBlue,
-      inactiveColor: CupertinoColors.systemGrey,
-    ),
-  ];
 
 
   @override
@@ -86,7 +58,7 @@ class _HomeState extends State<StudentHome>
         context,
         controller: _controller,
         screens: _widgetOptions,
-        items: _navBarsItems,
+        items: NavBar().navBarsItems,
         confineInSafeArea: true,
         backgroundColor: Colors.white,
         handleAndroidBackButtonPress: true,
@@ -115,10 +87,20 @@ class _HomeState extends State<StudentHome>
 
 
 }
-
-class StudentApplicationCenter extends StatelessWidget
+class StudentApplicationCenter extends StatefulWidget
 {
-  List<CenterOptions> selection =
+  StudentApplicationCenter({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
+
+  @override
+  _CenterState createState() => _CenterState();
+}
+class _CenterState extends State<StudentApplicationCenter>
+{
+
+  static LoginVariables _userCredentials;
+
+  final List<CenterOptions> _selection =
   [
     CenterOptions("Student information","assets/icons/studentInfo.svg"),
     CenterOptions("Semester Scores","assets/icons/scores.svg"),
@@ -126,33 +108,33 @@ class StudentApplicationCenter extends StatelessWidget
     CenterOptions("Semester Schedule","assets/icons/clipboard.svg"),
     CenterOptions("Course resources and Assignments","assets/icons/rAndA.svg"),
   ];
-  List<Widget> studentWidgets =
+  final List<Widget> _studentWidgets =
   [
-    StudentInformation(userCredentials),
-    StudentSemesterScores(userCredentials),
-    StudentCourseList(userCredentials),
-    StudentSemesterSchedule(userCredentials),
-    StudentRAndA(userCredentials: userCredentials),
+    StudentInformation(userCredentials: _userCredentials),
+    StudentSemesterScores(_userCredentials),
+    StudentCourseList(_userCredentials),
+    StudentSemesterSchedule(_userCredentials),
+    StudentRAndA(userCredentials: _userCredentials),
   ];
   @override
   Widget build(BuildContext context)
   {
     return GridView.builder
     (
-      itemCount:selection.length,
+      itemCount:_selection.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: ConstantVariables.axisCount),
       itemBuilder: (context,index)
       {
         return GestureDetector
         (
-          child:CenterBoxWidget(selection[index]),
+          child:CenterBoxWidget(_selection[index]),
           onTap:
           ()
           {
             pushNewScreen
             (
               context,
-              screen: studentWidgets[index],
+              screen: _studentWidgets[index],
               withNavBar: true, // OPTIONAL VALUE. True by default.
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -160,6 +142,13 @@ class StudentApplicationCenter extends StatelessWidget
         );
       },
     );
+  }
+
+  @override
+  void initState()
+  {
+    super.initState();
+    _userCredentials = widget.userCredentials;
   }
 }
 

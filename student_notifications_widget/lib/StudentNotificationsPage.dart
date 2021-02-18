@@ -7,24 +7,26 @@ import 'package:general_widgets/NotificationView.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 
-LoginVariables userCredentials;
-List<dynamic> notes;
+
+
 class StudentNotificationsPage extends StatefulWidget
 {
+  final LoginVariables userCredentials;
+  StudentNotificationsPage({Key key,this.userCredentials}) : super(key: key);
+
   @override
   _StudentNotificationsState createState() => _StudentNotificationsState();
-  StudentNotificationsPage(LoginVariables user)
-  {
-    userCredentials=user;
-  }
+
 }
 class _StudentNotificationsState extends State<StudentNotificationsPage>
 {
   StudentNotificationsBloc studentNotificationsBloc;
+  List<dynamic> notes;
   @override
   void initState()
   {
-    studentNotificationsBloc = StudentNotificationsBloc(userCredentials.user_id);
+    super.initState();
+    studentNotificationsBloc = StudentNotificationsBloc(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)

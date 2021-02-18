@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   app_constants:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "../app_constants"
       relative: true
@@ -247,6 +247,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  open_file:
+    dependency: transitive
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   options_widget:
     dependency: transitive
     description:
