@@ -2,22 +2,19 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:blocs/CoursesBlocs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:models/Courses.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/BlueBackGround.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
-
+import 'package:view/StudentHome.dart';
 import 'CourseList.dart';
 
-LoginVariables userCredentials;
-List<Courses> courses;
 class StudentCourseList extends StatefulWidget
 {
-  StudentCourseList(LoginVariables loginVariables)
-  {
-    userCredentials = loginVariables;
-  }
+  StudentCourseList({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
   @override
   _StudentCourseListState createState() => _StudentCourseListState();
@@ -27,18 +24,21 @@ class StudentCourseList extends StatefulWidget
 class _StudentCourseListState extends State<StudentCourseList>
 {
 
-  CoursesBlocs coursesBlocs;
+  CoursesBlocs _coursesBlocs;
+  static LoginVariables _userCredentials;
   @override
   void initState()
   {
-    coursesBlocs = CoursesBlocs(userCredentials.user_id);
+    super.initState();
+    _userCredentials= widget.userCredentials;
+    _coursesBlocs = CoursesBlocs(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)
   {
     return StreamBuilder<Response<dynamic>>
       (
-      stream: coursesBlocs.courseStream,
+      stream: _coursesBlocs.courseStream,
       builder: (context,snapshot)
       {
         if (snapshot.hasData)
@@ -46,21 +46,30 @@ class _StudentCourseListState extends State<StudentCourseList>
           switch (snapshot.data.status)
           {
             case Status.LOADING:
-
+              return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
-              courses = snapshot.data.data;
-              return CoursesView();
+              return CoursesView(courses: snapshot.data.data,);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                  (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
-
-
-        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
-
+        WidgetsBinding.instance.addPostFrameCallback
+          (
+            (_)
+            {
+              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
+            }
+        );
+        return StudentHome(userCredentials: _userCredentials);
       },
     );
   }
@@ -69,6 +78,9 @@ class _StudentCourseListState extends State<StudentCourseList>
 
 class CoursesView extends StatelessWidget
 {
+  CoursesView({Key key,this.courses}) : super(key: key);
+  final List<Courses> courses;
+
   @override
   Widget build(BuildContext context)
   {

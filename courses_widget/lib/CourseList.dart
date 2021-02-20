@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:models/Courses.dart';
 import 'package:course_info_widgets/CourseListBox.dart';
+
 class CourseList extends StatelessWidget
 {
   final List<Courses> courses;

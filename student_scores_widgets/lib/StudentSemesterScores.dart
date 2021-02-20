@@ -8,14 +8,11 @@ import 'package:blocs/StudentScoresBlocs.dart';
 import 'package:student_scores_widgets/CourseBox.dart';
 import 'package:user_info_widgets/BlueBackGround.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
-LoginVariables userCredentials;
-List<StudentScores> studentScores;
+
 class StudentSemesterScores extends StatefulWidget
 {
-  StudentSemesterScores(LoginVariables loginVariables)
-  {
-    userCredentials = loginVariables;
-  }
+  StudentSemesterScores({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
   @override
   _SemesterScoresState createState() => _SemesterScoresState();
@@ -29,7 +26,8 @@ class _SemesterScoresState extends State<StudentSemesterScores>
   @override
   void initState()
   {
-    studentScoresBlocs = StudentScoresBlocs(userCredentials.user_id);
+    super.initState();
+    studentScoresBlocs = StudentScoresBlocs(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)
@@ -47,8 +45,7 @@ class _SemesterScoresState extends State<StudentSemesterScores>
 
               break;
             case Status.COMPLETED:
-              studentScores = snapshot.data.data;
-              return SemesterScoresView();
+              return SemesterScoresView(studentScores: snapshot.data.data,);
               break;
             default:
               return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
@@ -67,6 +64,9 @@ class _SemesterScoresState extends State<StudentSemesterScores>
 
 class SemesterScoresView extends StatelessWidget
 {
+  SemesterScoresView({Key key,this.studentScores}) : super(key: key);
+  final List<StudentScores> studentScores;
+
   @override
   Widget build(BuildContext context)
   {

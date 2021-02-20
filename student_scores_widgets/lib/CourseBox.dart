@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:models/StudentScores.dart';
 import 'package:course_info_widgets/CourseListBox.dart';
-StudentScores scores;
 
 class ScoreList extends StatelessWidget
 {

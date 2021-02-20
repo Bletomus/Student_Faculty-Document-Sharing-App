@@ -137,7 +137,7 @@ class _LoginInScreenState extends State<SubmitForm>
                                                 userCredentials.isloggedIn = true;
                                                 userCredentials.user_id = idController.text;
                                                 if(userCredentials.user == 1)
-                                                  return StudentHome(userCredentials);
+                                                  return StudentHome(userCredentials: userCredentials);
                                                 else
                                                   return FacultyHome(userCredentials);
                                               }

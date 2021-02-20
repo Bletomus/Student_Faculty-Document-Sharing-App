@@ -111,9 +111,9 @@ class _CenterState extends State<StudentApplicationCenter>
   final List<Widget> _studentWidgets =
   [
     StudentInformation(userCredentials: _userCredentials),
-    StudentSemesterScores(_userCredentials),
-    StudentCourseList(_userCredentials),
-    StudentSemesterSchedule(_userCredentials),
+    StudentSemesterScores(userCredentials: _userCredentials),
+    StudentCourseList(userCredentials: _userCredentials),
+    StudentSemesterSchedule(userCredentials: _userCredentials),
     StudentRAndA(userCredentials: _userCredentials),
   ];
   @override

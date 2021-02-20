@@ -3,8 +3,6 @@ import 'package:course_info_widgets/CourseListBox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:models/StudentSchedule.dart';
 
-StudentSchedule schedule;
-
 class ScheduleList extends StatelessWidget
 {
   final List<StudentSchedule> studentSchedule;
