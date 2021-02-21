@@ -62,9 +62,9 @@ class _HomeState extends State<StudentHome>
         confineInSafeArea: true,
         backgroundColor: Colors.white,
         handleAndroidBackButtonPress: true,
-        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears.
+        resizeToAvoidBottomInset: true,
         stateManagement: true,
-        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument.
+        hideNavigationBarWhenKeyboardShows: true,
         decoration: NavBarDecoration
         (
           borderRadius: BorderRadius.circular(10.0),
@@ -74,7 +74,7 @@ class _HomeState extends State<StudentHome>
         popActionScreens: PopActionScreensType.all,
         itemAnimationProperties: ItemAnimationProperties( duration: Duration(milliseconds: 200), curve: Curves.ease,),
         screenTransitionAnimation: ScreenTransitionAnimation
-        ( // Screen transition animation on change of selected tab.
+        (
           animateTabTransition: true,
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),

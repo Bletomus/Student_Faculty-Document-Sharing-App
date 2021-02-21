@@ -23,7 +23,8 @@ dependencies:
     path: ../general_widgets
   app_constants:
     path: ../app_constants
-
+  view:
+    path: ../view
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -2,29 +2,31 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:blocs/FacultyNotificationsBloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:general_widgets/NotificationView.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
+import 'package:view/FacultyHome.dart';
 
-LoginVariables userCredentials;
-List<dynamic> notes;
+
+
 class FacultyNotificationsPage extends StatefulWidget
 {
+  FacultyNotificationsPage({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
   @override
   _FacultyNotificationsState createState() => _FacultyNotificationsState();
-  FacultyNotificationsPage(LoginVariables user)
-  {
-    userCredentials=user;
-  }
+
 }
+
 class _FacultyNotificationsState extends State<FacultyNotificationsPage>
 {
   FacultyNotificationsBloc facultyNotificationsBloc;
   @override
   void initState()
   {
-    facultyNotificationsBloc = FacultyNotificationsBloc(userCredentials.user_id);
+    facultyNotificationsBloc = FacultyNotificationsBloc(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)
@@ -39,20 +41,32 @@ class _FacultyNotificationsState extends State<FacultyNotificationsPage>
           switch (snapshot.data.status)
           {
             case Status.LOADING:
-
+              return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
-              notes = snapshot.data.data;
-              return NotificationView(notes);
+
+              return NotificationView(note: snapshot.data.data);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
 
-
-        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
+        WidgetsBinding.instance.addPostFrameCallback
+          (
+                (_)
+            {
+              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
+            }
+        );
+        return FacultyHome(userCredentials: widget.userCredentials,);
 
       },
     );

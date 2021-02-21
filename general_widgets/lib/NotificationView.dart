@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'NotificationPage.dart';
 
-List<dynamic> notifications;
+
 class NotificationView extends StatefulWidget
 {
-
-
-  NotificationView(List<dynamic> notes)
-  {
-    notifications =notes;
-  }
+  
+  NotificationView({Key key, this.note}) : super(key:key);
+  final dynamic note;
 
   @override
   _NotificationsState createState() => _NotificationsState();
@@ -28,18 +25,18 @@ class _NotificationsState extends State<NotificationView>
   {
     return ListView.builder
     (
-      itemCount: notifications.length,
+      itemCount: widget.note.length,
       itemBuilder: (context,index)
       {
         return GestureDetector
           (
-            child:NoteBox(note: notifications[index]),
+            child:NoteBox(note: widget.note[index]),
             onTap:
             ()
             {
               Navigator.push
                 (
-                context,MaterialPageRoute(builder: (context) => NotePage(note: notifications[index]),),
+                context,MaterialPageRoute(builder: (context) => NotePage(note: widget.note[index]),),
               );
             }
         );

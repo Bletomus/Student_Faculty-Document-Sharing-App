@@ -9,7 +9,7 @@ import 'FacultyHome.dart';
 import 'StudentHome.dart';
 
 
-LoginVariables userCredentials = LoginVariables();
+LoginVariables _userCredentials = LoginVariables();
 class SubmitForm extends StatefulWidget
 {
   final String title = 'Campus Life';
@@ -19,13 +19,13 @@ class SubmitForm extends StatefulWidget
 class _LoginInScreenState extends State<SubmitForm>
 {
   final _formKey = GlobalKey<FormState>();
-  ExistenceBloc bloc;
-  TextEditingController idController = TextEditingController();
+  ExistenceBloc _bloc;
+  TextEditingController _idController = TextEditingController();
 
   @override
   void dispose()
   {
-    idController.dispose();
+    _idController.dispose();
     super.dispose();
   }
   @override
@@ -56,7 +56,7 @@ class _LoginInScreenState extends State<SubmitForm>
                     [
                       TextFormField
                         (
-                          controller: idController,
+                          controller: _idController,
                           decoration: InputDecoration
                           (
                             labelText: "Enter User ID",
@@ -105,7 +105,7 @@ class _LoginInScreenState extends State<SubmitForm>
                         {
                           if(_formKey.currentState.validate())
                           {
-                              bloc =ExistenceBloc(userCredentials.user,idController.text);
+                              _bloc =ExistenceBloc(_userCredentials.user,_idController.text);
                               Navigator.push
                               (
                                 context,MaterialPageRoute
@@ -114,7 +114,7 @@ class _LoginInScreenState extends State<SubmitForm>
                                   {
                                     return StreamBuilder<Response<bool>>
                                       (
-                                      stream: bloc.isAvailableStream,
+                                      stream: _bloc.isAvailableStream,
                                       builder: (context,snapshot)
                                       {
                                         if (snapshot.hasData)
@@ -134,12 +134,12 @@ class _LoginInScreenState extends State<SubmitForm>
                                               if(snapshot.data.data == true)
                                               {
                                                 debugPrint(snapshot.data.data.toString());
-                                                userCredentials.isloggedIn = true;
-                                                userCredentials.user_id = idController.text;
-                                                if(userCredentials.user == 1)
-                                                  return StudentHome(userCredentials: userCredentials);
+                                                _userCredentials.isloggedIn = true;
+                                                _userCredentials.user_id = _idController.text;
+                                                if(_userCredentials.user == 1)
+                                                  return StudentHome(userCredentials: _userCredentials);
                                                 else
-                                                  return FacultyHome(userCredentials);
+                                                  return FacultyHome(userCredentials: _userCredentials);
                                               }
                                               else
                                               {
@@ -243,7 +243,7 @@ class _UserDropDownState extends State<UserSelectionDropDownBox>
               ()
               {
                 _value = value;
-                userCredentials.user = value;
+                _userCredentials.user = value;
               }
           );
         },

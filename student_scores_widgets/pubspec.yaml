@@ -25,23 +25,12 @@ dependencies:
     path: ../models
   course_info_widgets:
     path: ../course_info_widgets
+  view:
+    path: ../view
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  app_constants:
-    path: ../app_constants
-  general_widgets:
-    path: ../general_widgets
-  networking:
-    path: ../networking
-  user_info_widgets:
-    path: ../user_info_widgets
-  blocs:
-    path: ../blocs
-  models:
-    path: ../models
-  course_info_widgets:
-    path: ../course_info_widgets
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

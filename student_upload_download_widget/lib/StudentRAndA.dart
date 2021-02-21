@@ -2,17 +2,19 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:blocs/StudentTakesBlocs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:models/StudentTakes.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
+import 'package:view/StudentHome.dart';
 
 import 'Courses.dart';
 
 
 class StudentRAndA extends StatefulWidget
 {
-  LoginVariables userCredentials;
+  final LoginVariables userCredentials;
   StudentRAndA({Key key, this.userCredentials,}) : super(key: key);
   @override
   StudentState createState() =>  StudentState();
@@ -47,12 +49,25 @@ class StudentState extends State<StudentRAndA>
               return Courses(student: students,location:location);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
         else
-          return Text("error");
+          WidgetsBinding.instance.addPostFrameCallback
+            (
+                  (_)
+              {
+                DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app!! Please send me a message");
+              }
+          );
+        return StudentHome(userCredentials: widget.userCredentials);
       },
     );
   }

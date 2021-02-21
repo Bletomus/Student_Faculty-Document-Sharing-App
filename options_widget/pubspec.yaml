@@ -26,6 +26,8 @@ dependencies:
   download_widget:
     path: ../download_widget
   flutter_inappwebview: ^4.0.0+4
+  view:
+    path: ../view
 dev_dependencies:
   flutter_test:
     sdk: flutter

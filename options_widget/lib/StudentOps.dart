@@ -5,7 +5,7 @@ import 'package:options_widget/AboutDepartment.dart';
 import 'package:options_widget/AboutSchool.dart';
 import 'package:options_widget/SpecialMentions.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
-int index;
+
 
 class StudentOps extends StatelessWidget
 {
@@ -27,9 +27,7 @@ class StudentOps extends StatelessWidget
       return DownloadFolder();
   }
 
-  StudentOps(int i)
-  {
-    index = i;
-  }
+  StudentOps({Key key,this.index}) : super(key: key);
+  final int index;
 }
 

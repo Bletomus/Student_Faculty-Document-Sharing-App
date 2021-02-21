@@ -2,23 +2,22 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:blocs/UserInfoBloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:models/TeacherInfo.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/TextBoxHeadingsAndContent.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
-LoginVariables userCredentials;
-FacultyInfo facultyInfo;
+import 'package:view/FacultyHome.dart';
 
 class FacultyInformation extends StatefulWidget
 {
   @override
   _FacultyInfoState createState() => _FacultyInfoState();
 
-  FacultyInformation(LoginVariables user)
-  {
-    userCredentials = user;
-  }
+
+  final LoginVariables userCredentials;
+  FacultyInformation({Key key,this.userCredentials}): super(key:key);
 
 }
 
@@ -30,8 +29,9 @@ class _FacultyInfoState extends State<FacultyInformation>
   @override
   void initState()
   {
+    super.initState();
     userInfoBloc =
-        UserInfoBloc(userCredentials.user, userCredentials.user_id);
+        UserInfoBloc(widget.userCredentials.user, widget.userCredentials.user_id);
   }
 
   @override
@@ -47,20 +47,34 @@ class _FacultyInfoState extends State<FacultyInformation>
           switch (snapshot.data.status)
           {
             case Status.LOADING:
-
+              return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
-              facultyInfo = snapshot.data.data;
-              return FacultyInfoView();
+
+              return FacultyInfoView(facultyInfo: snapshot.data.data,);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
 
 
-        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
+        WidgetsBinding.instance.addPostFrameCallback
+          (
+                (_)
+            {
+              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
+            }
+        );
+        return FacultyHome(userCredentials: widget.userCredentials,);
+
 
       },
     );
@@ -69,7 +83,9 @@ class _FacultyInfoState extends State<FacultyInformation>
 }
 class FacultyInfoView extends StatelessWidget
 {
-  List<String> Headings =
+  FacultyInfoView({Key key, this.facultyInfo}) : super(key : key);
+  final FacultyInfo facultyInfo;
+  final List<String> _headings =
   [
     "Member Name:",
     "Gender:",
@@ -78,19 +94,20 @@ class FacultyInfoView extends StatelessWidget
     "Department:",
     "",
   ];
-  List<String> Content =
-  [
-    facultyInfo.personName,
-    facultyInfo.gender,
-    facultyInfo.nationality,
-    getContacts(facultyInfo.phoneNumber),
-    facultyInfo.facultyMajor.majorDepartment.departmentName,
-    "",
-  ];
+
 
   @override
   Widget build(BuildContext context)
   {
-    return HeadingsandContentWidget(content: Content,headings: Headings);
+    final List<String> _content =
+    [
+      facultyInfo.personName,
+      facultyInfo.gender,
+      facultyInfo.nationality,
+      getContacts(facultyInfo.phoneNumber),
+      facultyInfo.facultyMajor.majorDepartment.departmentName,
+      "",
+    ];
+    return HeadingsandContentWidget(content: _content,headings: _headings);
   }
 }

@@ -7,16 +7,20 @@ import 'package:options_widget/SendFiles.dart';
 import 'package:options_widget/SpecialMentions.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 
-int index;
-LoginVariables userCredentials;
+
 class FacultyOps extends StatelessWidget
 {
+
+  FacultyOps({Key key,this.userCredentials,this.index}) : super(key: key);
+  final LoginVariables userCredentials;
+  final int index;
+
   @override
   Widget build(BuildContext context)
   {
     if(index == 0)
     {
-      return SendFiles(userCredentials);
+      return SendFiles(userCredentials: userCredentials);
     }
     if(index == 1)
     {
@@ -30,9 +34,4 @@ class FacultyOps extends StatelessWidget
       return DownloadFolder();
   }
 
-  FacultyOps(int i,loginVariables)
-  {
-    index = i;
-    userCredentials = loginVariables;
-  }
 }

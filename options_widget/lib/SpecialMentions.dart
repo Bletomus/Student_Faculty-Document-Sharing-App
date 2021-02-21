@@ -6,9 +6,10 @@ import 'package:options_widget/InAppBrowser.dart';
 import 'package:user_info_widgets/BlueBackGround.dart';
 import 'CreditObject.dart';
 
-List<CreditObject> _credits;
+
 class SpecialMentions extends StatelessWidget
 {
+  List<CreditObject> _credits;
   @override
   Widget build(BuildContext context)
   {
@@ -24,7 +25,7 @@ class SpecialMentions extends StatelessWidget
             child: Container
             (
               margin: EdgeInsets.fromLTRB(ConstantVariables.marginLeft,ConstantVariables.marginTop,ConstantVariables.marginRight,ConstantVariables.marginBottom),
-              child: CreditsBox(_credits[index])
+              child: CreditsBox(credit: _credits[index])
             ),
             onTap:
             ()
@@ -44,9 +45,9 @@ class SpecialMentions extends StatelessWidget
 
 class CreditsBox extends StatelessWidget
 {
-  CreditObject credit;
+  final CreditObject credit;
 
-  CreditsBox(this.credit);
+  CreditsBox({Key key,this.credit}) : super(key: key);
 
   @override
   Widget build(BuildContext context)

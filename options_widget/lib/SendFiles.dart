@@ -7,25 +7,26 @@ import 'package:app_constants/ThemeConstants.dart';
 import 'package:blocs/TeachesBloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:general_widgets/UploadFunctionWithNote.dart';
 import 'package:models/Teaches.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:general_widgets/Rower.dart';
-LoginVariables userCredentials;
-List<Teaches> students ;
-List<ClassOfStudents> studentList;
+import 'package:view/FacultyHome.dart';
+
+List<Teaches> _students ;
+List<ClassOfStudents> _studentList;
+
 class SendFiles extends StatefulWidget
 {
 
   @override
   _SendFilesState createState() => _SendFilesState();
 
-  SendFiles(LoginVariables loginVariables)
-  {
-    userCredentials =loginVariables;
-  }
+  SendFiles({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 }
 
 class _SendFilesState extends State<SendFiles>
@@ -35,7 +36,7 @@ class _SendFilesState extends State<SendFiles>
   void initState()
   {
     super.initState();
-    teachesBloc = TeachesBloc(userCredentials.user_id);
+    teachesBloc = TeachesBloc(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)
@@ -50,21 +51,33 @@ class _SendFilesState extends State<SendFiles>
           switch (snapshot.data.status)
           {
             case Status.LOADING:
-
+              return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
-              students = snapshot.data.data;
+              _students = snapshot.data.data;
               return StudentListView();
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
 
+        WidgetsBinding.instance.addPostFrameCallback
+          (
+                (_)
+            {
+              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
+            }
+        );
 
-        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
-
+      return FacultyHome(userCredentials: widget.userCredentials);
       },
     );
   }
@@ -81,13 +94,13 @@ class _StudentListState extends State<StudentListView>
 {
   List<int> getChecked()
   {
-    if(studentList != null)
+    if(_studentList != null)
     {
       List <ClassOfStudents> names = [];
       List<int> filteredList=[];
 
       Map<int, int> mpNames = {};
-      for (var item in studentList)
+      for (var item in _studentList)
       {
         if(item.isChecked)
           mpNames[item.studentNumber] = item.studentNumber;
@@ -99,11 +112,11 @@ class _StudentListState extends State<StudentListView>
   }
   List <ClassOfStudents> getStudents()
   {
-    if(studentList == null)
+    if(_studentList == null)
     {
       List <ClassOfStudents> names = [];
       List<ClassOfStudents> filteredList=[];
-      for (var item in students)
+      for (var item in _students)
       {
         names.addAll(item.classOfStudents);
       }
@@ -115,13 +128,13 @@ class _StudentListState extends State<StudentListView>
       filteredList = mpNames.values.toList();
       return filteredList;
     }
-    return studentList;
+    return _studentList;
 
   }
   @override
   Widget build(BuildContext context)
   {
-    studentList = getStudents();
+    _studentList = getStudents();
     return whiteBackGroundWidget(insiderWidget:
       Container
       (
@@ -133,7 +146,7 @@ class _StudentListState extends State<StudentListView>
             (
               child:ListView.builder
                 (
-                itemCount: studentList.length,
+                itemCount: _studentList.length,
                 itemBuilder: (context,index)
                 {
                   return Container
@@ -159,10 +172,10 @@ class _StudentListState extends State<StudentListView>
               async
               {
                 List<int> filteredList = getChecked();
-                String dept = students[0].teacher.facultyMajor.majorDepartment.departmentName;
+                String dept = _students[0].teacher.facultyMajor.majorDepartment.departmentName;
                 debugPrint(filteredList.length.toString());
                 if(filteredList.length > 0)
-                  await findUploadNote(context,students[0].teacher.personNumber.toString(),filteredList,dept);
+                  await findUploadNote(context,_students[0].teacher.personNumber.toString(),filteredList,dept);
               },
             ),
           ],
@@ -197,18 +210,18 @@ class _CheckerState extends State<Checker>
       activeColor: Colors.white,
       checkColor: Colors.blue,
       dense: true,
-      selected: studentList[index].isChecked,
-      value: studentList[index].isChecked,
+      selected: _studentList[index].isChecked,
+      value: _studentList[index].isChecked,
       secondary: SizedBox
         (
           width: 200,
-          child: Rower(studentList[index].studentNumber.toString(),studentList[index].studentName)
+          child: Rower(_studentList[index].studentNumber.toString(),_studentList[index].studentName)
       ),
       onChanged: (bool val)
       {
         setState(()
         {
-          studentList[index].isChecked =val;
+          _studentList[index].isChecked =val;
         });
 
       }

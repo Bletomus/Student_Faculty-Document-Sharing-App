@@ -3,19 +3,20 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:options_widget/OptionsList.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
-List<String> options =
-[
-  "Send Files to students",
-  "Special Mentions",
-  "About the School",
-  "About the Responsible Department",
-  "View Downloads"
-];
+
 class FacultyOptions extends StatelessWidget
 {
-  LoginVariables userCredentials;
+  FacultyOptions({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
-  FacultyOptions(this.userCredentials);
+  final List<String> _options =
+  [
+    "Send Files to students",
+    "Special Mentions",
+    "About the School",
+    "About the Responsible Department",
+    "View Downloads"
+  ];
 
   @override
   Widget build(BuildContext context)

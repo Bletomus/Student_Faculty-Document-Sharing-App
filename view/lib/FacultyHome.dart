@@ -10,20 +10,16 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:app_constants/s_f_d_s_m_s_icons_icons.dart';
 import 'package:faculty_notifications_widget/FacultyNotificationsPage.dart';
 import 'package:teaches_widget/FacultyOptions.dart';
-LoginVariables userCredentials;
+
 
 class FacultyHome extends StatefulWidget
 {
 
-
-  FacultyHome(LoginVariables loginVariables)
-  {
-    userCredentials = loginVariables;
-  }
+  FacultyHome({Key key,this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
   @override
   _HomeState createState() => _HomeState();
-
 
 }
 
@@ -70,14 +66,16 @@ class _HomeState extends State<FacultyHome>
   static List<Widget> _widgetOptions = <Widget>
   [
     FacultyApplicationCenter(),
-    FacultyNotificationsPage(userCredentials),
-    FacultyOptions(userCredentials),
+    FacultyNotificationsPage(userCredentials: _userCredentials),
+    FacultyOptions(userCredentials: _userCredentials),
   ];
+  static LoginVariables _userCredentials;
   PersistentTabController _controller;
   @override
   void initState()
   {
     super.initState();
+    _userCredentials= widget.userCredentials;
     _controller = PersistentTabController(initialIndex: 0);
   }
   @override
@@ -95,11 +93,11 @@ class _HomeState extends State<FacultyHome>
         confineInSafeArea: true,
         backgroundColor: Colors.white,
         handleAndroidBackButtonPress: true,
-        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears.
+        resizeToAvoidBottomInset: true,
         stateManagement: true,
-        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument.
+        hideNavigationBarWhenKeyboardShows: true,
         decoration: NavBarDecoration
-          (
+        (
           borderRadius: BorderRadius.circular(10.0),
           colorBehindNavBar: Colors.white,
         ),
@@ -107,12 +105,12 @@ class _HomeState extends State<FacultyHome>
         popActionScreens: PopActionScreensType.all,
         itemAnimationProperties: ItemAnimationProperties( duration: Duration(milliseconds: 200), curve: Curves.ease,),
         screenTransitionAnimation: ScreenTransitionAnimation
-          ( // Screen transition animation on change of selected tab.
+          (
           animateTabTransition: true,
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle: NavBarStyle.simple, // Choose the nav bar style with this property.
+        navBarStyle: NavBarStyle.simple,
       ),
     );
   }
@@ -121,7 +119,20 @@ class _HomeState extends State<FacultyHome>
 
 }
 
-class FacultyApplicationCenter extends StatelessWidget
+class FacultyApplicationCenter extends StatefulWidget
+{
+  FacultyApplicationCenter({Key key,this.loginVariables}) : super(key:key);
+  final LoginVariables loginVariables;
+
+
+  @override
+  FacultyAppState createState() => FacultyAppState();
+
+
+
+}
+
+class FacultyAppState extends State<FacultyApplicationCenter>
 {
   final List<CenterOptions> selection =
   [
@@ -130,38 +141,46 @@ class FacultyApplicationCenter extends StatelessWidget
   ];
   final List<Widget> facultyWidgets =
   [
-    FacultyInformation(userCredentials),
-    FacultyRAndA(userCredentials),
+    FacultyInformation(userCredentials: loginVariables),
+    FacultyRAndA(userCredentials: loginVariables),
   ];
+  static LoginVariables loginVariables;
+
+  @override
+  void initState()
+  {
+    super.initState();
+    loginVariables = widget.loginVariables;
+  }
+
   @override
   Widget build(BuildContext context)
   {
+
     return GridView.builder
-    (
+      (
       itemCount:selection.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: ConstantVariables.axisCount),
       itemBuilder: (context,index)
       {
         return GestureDetector
-        (
-          child:CenterBoxWidget(selection[index]),
-          onTap:
-          ()
-          {
-            pushNewScreen
-            (
-              context,
-              screen: facultyWidgets[index],
-              withNavBar: true, // OPTIONAL VALUE. True by default.
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
-          }
+          (
+            child:CenterBoxWidget(selection[index]),
+            onTap:
+                ()
+            {
+              pushNewScreen
+                (
+                context,
+                screen: facultyWidgets[index],
+                withNavBar: true, // OPTIONAL VALUE. True by default.
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            }
         );
       },
     );
   }
 
 }
-
-
 

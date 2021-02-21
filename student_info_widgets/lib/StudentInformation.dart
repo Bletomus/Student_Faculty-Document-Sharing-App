@@ -2,12 +2,14 @@
 import 'package:blocs/UserInfoBloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:models/StudentInfo.dart';
 import 'package:networking/Response.dart';
 import 'package:app_constants/LoginInformation.dart';
 import 'package:user_info_widgets/TextBoxHeadingsAndContent.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
+import 'package:view/StudentHome.dart';
 
 
 
@@ -46,20 +48,32 @@ class _StudentInfoState extends State<StudentInformation>
           switch (snapshot.data.status)
           {
             case Status.LOADING:
-
+              return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
               _studentInfo = snapshot.data.data;
               return StudentInfoView(studentInfo: _studentInfo,);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
+
           }
         }
-
-
-        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
+        WidgetsBinding.instance.addPostFrameCallback
+          (
+                (_)
+            {
+              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app!! Please send me a message");
+            }
+        );
+        return StudentHome(userCredentials: widget.userCredentials);
 
       },
     );

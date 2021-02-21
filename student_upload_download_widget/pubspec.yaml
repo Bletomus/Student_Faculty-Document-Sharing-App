@@ -43,6 +43,8 @@ dependencies:
     path: ../faculty_notifications_widget
   student_options_widget:
     path: ../student_options_widget
+  view:
+    path: ../view
   persistent_bottom_nav_bar: ^3.1.0
 
 dev_dependencies:

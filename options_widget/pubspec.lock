@@ -64,6 +64,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  course_info_widgets:
+    dependency: transitive
+    description:
+      path: "../course_info_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  courses_widget:
+    dependency: transitive
+    description:
+      path: "../courses_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -75,6 +89,20 @@ packages:
     dependency: "direct main"
     description:
       path: "../download_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
+  faculty_info_package:
+    dependency: transitive
+    description:
+      path: "../faculty_info_package"
+      relative: true
+    source: path
+    version: "0.0.1"
+  faculty_notifications_widget:
+    dependency: transitive
+    description:
+      path: "../faculty_notifications_widget"
       relative: true
     source: path
     version: "0.0.1"
@@ -289,6 +317,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
+  persistent_bottom_nav_bar:
+    dependency: transitive
+    description:
+      name: persistent_bottom_nav_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   petitparser:
     dependency: transitive
     description:
@@ -357,6 +392,55 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.3"
+  student_info_widgets:
+    dependency: transitive
+    description:
+      path: "../student_info_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_notifications_widget:
+    dependency: transitive
+    description:
+      path: "../student_notifications_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_options_widget:
+    dependency: transitive
+    description:
+      path: "../student_options_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_schedule_widget:
+    dependency: transitive
+    description:
+      path: "../student_schedule_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_scores_widgets:
+    dependency: transitive
+    description:
+      path: "../student_scores_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_upload_download_widget:
+    dependency: transitive
+    description:
+      path: "../student_upload_download_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
+  teaches_widget:
+    dependency: transitive
+    description:
+      path: "../teaches_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
   term_glyph:
     dependency: transitive
     description:
@@ -378,6 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.5"
+  upload_download_widget:
+    dependency: transitive
+    description:
+      path: "../upload_download_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
   user_info_widgets:
     dependency: "direct main"
     description:
@@ -399,6 +490,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.5"
+  view:
+    dependency: "direct main"
+    description:
+      path: "../view"
+      relative: true
+    source: path
+    version: "0.0.1"
   win32:
     dependency: transitive
     description:
