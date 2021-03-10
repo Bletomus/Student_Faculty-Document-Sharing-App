@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.0+2
+  marquee: ^1.7.0
   view:
     path: ../view
   flutter_downloader: ^1.5.2
@@ -34,9 +35,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.12.0+2
-  view:
-    path: ../view
+
   open_file: ^3.0.3
 
 # For information on the generic Dart part of this file, see the

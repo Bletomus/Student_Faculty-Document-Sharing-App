@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
+import 'package:general_widgets/NoConnection.dart';
 import 'package:networking/Response.dart';
 import 'package:models/StudentScores.dart';
 import 'package:blocs/StudentScoresBlocs.dart';
@@ -10,6 +11,7 @@ import 'package:student_scores_widgets/CourseBox.dart';
 import 'package:user_info_widgets/BlueBackGround.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:view/StudentHome.dart';
+import 'package:view/SubmitForm.dart';
 
 class StudentSemesterScores extends StatefulWidget
 {
@@ -60,14 +62,13 @@ class _SemesterScoresState extends State<StudentSemesterScores>
               break;
           }
         }
-        WidgetsBinding.instance.addPostFrameCallback
-          (
-                (_)
-            {
-              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app!! Please send me a message");
-            }
-        );
-        return StudentHome(userCredentials: widget.userCredentials);
+        else
+        {
+
+          return StudentHome(userCredentials: widget.userCredentials);
+        }
+
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
 
 
       },

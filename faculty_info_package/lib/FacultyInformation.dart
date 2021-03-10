@@ -9,6 +9,7 @@ import 'package:user_info_widgets/TextBoxHeadingsAndContent.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:view/FacultyHome.dart';
+import 'package:view/SubmitForm.dart';
 
 class FacultyInformation extends StatefulWidget
 {
@@ -64,17 +65,12 @@ class _FacultyInfoState extends State<FacultyInformation>
               break;
           }
         }
+        else
+        {
+          return FacultyHome(userCredentials: widget.userCredentials,);
+        }
 
-
-        WidgetsBinding.instance.addPostFrameCallback
-          (
-                (_)
-            {
-              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
-            }
-        );
-        return FacultyHome(userCredentials: widget.userCredentials,);
-
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
 
       },
     );

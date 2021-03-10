@@ -9,7 +9,7 @@ Future<bool> upload(String id,String path,int type,String name) async
   FacultyApiProvider facultyApiProvider = ApiFactory(2).getProvider();
   ApiConstants apiConstants = ApiConstants(2);
   debugPrint(apiConstants.sendUploadsEndPoint()+id+"/"+type.toString());
-  bool result = await facultyApiProvider.UploadFile(path, apiConstants.sendUploadsEndPoint()+id+"/"+type.toString(),name);
+  bool result = await facultyApiProvider.UploadFile(path, apiConstants.sendUploadsEndPoint()+id+"/"+type.toString()+"/",name);
   return result;
 }
 Future<void> findUpload(BuildContext context,String id,int type)

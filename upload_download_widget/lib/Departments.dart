@@ -12,7 +12,7 @@ import 'Majors.dart';
 class Departments extends StatelessWidget
 {
 
-  List<Teaches> teaches;
+  final List<Teaches> teaches;
   Departments({Key key, this.teaches}) : super(key: key);
   @override
   Widget build(BuildContext context)

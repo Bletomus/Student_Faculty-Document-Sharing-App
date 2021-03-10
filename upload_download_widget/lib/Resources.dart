@@ -12,15 +12,14 @@ class Resources extends StatefulWidget
   Resources({Key key, this.teaches,this.location}) : super(key: key);
 
   @override
-  _ResourceState createState() => _ResourceState(teaches,location);
+  _ResourceState createState() => _ResourceState();
 
 }
 
 class _ResourceState extends State<Resources>
 {
-  Teaches teaches;
-  String location;
-  _ResourceState(this.teaches,this.location);
+
+  _ResourceState();
 
   @override
   Widget build(BuildContext context)
@@ -29,7 +28,7 @@ class _ResourceState extends State<Resources>
     return Scaffold
     (
       appBar: AppBar(title: Text("Resources")),
-      body:GetUploadsWidget(location: location,canDownload: true,),
+      body:GetUploadsWidget(location: widget.location,canDownload: true,),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton.extended
       (
@@ -39,7 +38,7 @@ class _ResourceState extends State<Resources>
         ()
         async
         {
-          await findUpload(context,teaches.teacher.id,1);
+          await findUpload(context,widget.teaches.teacher.id,1);
         },
       ),
     );

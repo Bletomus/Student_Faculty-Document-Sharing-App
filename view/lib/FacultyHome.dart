@@ -63,24 +63,25 @@ class _HomeState extends State<FacultyHome>
     ),
   ];
 
-  static List<Widget> _widgetOptions = <Widget>
-  [
-    FacultyApplicationCenter(),
-    FacultyNotificationsPage(userCredentials: _userCredentials),
-    FacultyOptions(userCredentials: _userCredentials),
-  ];
-  static LoginVariables _userCredentials;
+
+
   PersistentTabController _controller;
   @override
   void initState()
   {
     super.initState();
-    _userCredentials= widget.userCredentials;
+
     _controller = PersistentTabController(initialIndex: 0);
   }
   @override
   Widget build(BuildContext context)
   {
+    List<Widget> _widgetOptions = <Widget>
+    [
+      FacultyApplicationCenter(loginVariables: widget.userCredentials),
+      FacultyNotificationsPage(userCredentials: widget.userCredentials),
+      FacultyOptions(userCredentials: widget.userCredentials),
+    ];
     return Scaffold
     (
       appBar: AppBar(title: Text("SFDSMS Application Center")),
@@ -139,24 +140,20 @@ class FacultyAppState extends State<FacultyApplicationCenter>
     CenterOptions("Faculty Member information","assets/icons/teacherLogo.svg"),
     CenterOptions("Course Resources and Assignments","assets/icons/rAndA.svg"),
   ];
-  final List<Widget> facultyWidgets =
-  [
-    FacultyInformation(userCredentials: loginVariables),
-    FacultyRAndA(userCredentials: loginVariables),
-  ];
-  static LoginVariables loginVariables;
 
-  @override
-  void initState()
-  {
-    super.initState();
-    loginVariables = widget.loginVariables;
-  }
+
+
+
 
   @override
   Widget build(BuildContext context)
   {
-
+    debugPrint(widget.loginVariables.toString());
+    final List<Widget> facultyWidgets =
+    [
+      FacultyInformation(userCredentials: widget.loginVariables),
+      FacultyRAndA(userCredentials:  widget.loginVariables),
+    ];
     return GridView.builder
       (
       itemCount:selection.length,

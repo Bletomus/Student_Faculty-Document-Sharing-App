@@ -26,7 +26,9 @@ dependencies:
   networking:
     path: ../networking
   persistent_bottom_nav_bar: any
-
+  view:
+    path: ../view
+  marquee: ^1.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

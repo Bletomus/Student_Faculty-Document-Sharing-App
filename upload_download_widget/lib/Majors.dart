@@ -10,8 +10,8 @@ import 'Filter.dart';
 
 class Majors extends StatelessWidget
 {
-  List<Teaches> teaches;
-  String dept;
+  final List<Teaches> teaches;
+  final String dept;
   Majors({Key key, this.teaches,this.dept}) : super(key: key);
   @override
   Widget build(BuildContext context)

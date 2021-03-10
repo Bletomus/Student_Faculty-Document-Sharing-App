@@ -28,28 +28,29 @@ class StudentHome extends StatefulWidget
 class _HomeState extends State<StudentHome>
 {
   PersistentTabController _controller;
-  static LoginVariables _userCredentials ;
+
 
   @override
   void initState()
   {
     super.initState();
-    _userCredentials = widget.userCredentials;
+
     _controller = PersistentTabController(initialIndex: 0);
   }
 
-  List<Widget> _widgetOptions = <Widget>
-  [
-    StudentApplicationCenter(userCredentials: _userCredentials,),
-    StudentNotificationsPage(userCredentials: _userCredentials),
-    StudentOptions(),
-  ];
+
 
 
 
   @override
   Widget build(BuildContext context)
   {
+    List<Widget> _widgetOptions = <Widget>
+    [
+      StudentApplicationCenter(userCredentials: widget.userCredentials,),
+      StudentNotificationsPage(userCredentials: widget.userCredentials),
+      StudentOptions(),
+    ];
     return Scaffold
     (
       appBar: AppBar(title: Text("SFDSMS Application Center")),
@@ -98,7 +99,7 @@ class StudentApplicationCenter extends StatefulWidget
 class _CenterState extends State<StudentApplicationCenter>
 {
 
-  static LoginVariables _userCredentials;
+
 
   final List<CenterOptions> _selection =
   [
@@ -108,17 +109,18 @@ class _CenterState extends State<StudentApplicationCenter>
     CenterOptions("Semester Schedule","assets/icons/clipboard.svg"),
     CenterOptions("Course resources and Assignments","assets/icons/rAndA.svg"),
   ];
-  final List<Widget> _studentWidgets =
-  [
-    StudentInformation(userCredentials: _userCredentials),
-    StudentSemesterScores(userCredentials: _userCredentials),
-    StudentCourseList(userCredentials: _userCredentials),
-    StudentSemesterSchedule(userCredentials: _userCredentials),
-    StudentRAndA(userCredentials: _userCredentials),
-  ];
+
   @override
   Widget build(BuildContext context)
   {
+    final List<Widget> _studentWidgets =
+    [
+      StudentInformation(userCredentials: widget.userCredentials),
+      StudentSemesterScores(userCredentials: widget.userCredentials),
+      StudentCourseList(userCredentials: widget.userCredentials),
+      StudentSemesterSchedule(userCredentials: widget.userCredentials),
+      StudentRAndA(userCredentials: widget.userCredentials),
+    ];
     return GridView.builder
     (
       itemCount:_selection.length,
@@ -144,12 +146,7 @@ class _CenterState extends State<StudentApplicationCenter>
     );
   }
 
-  @override
-  void initState()
-  {
-    super.initState();
-    _userCredentials = widget.userCredentials;
-  }
+
 }
 
 

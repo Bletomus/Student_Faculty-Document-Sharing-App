@@ -28,6 +28,7 @@ dependencies:
   flutter_inappwebview: ^4.0.0+4
   view:
     path: ../view
+  marquee: ^1.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

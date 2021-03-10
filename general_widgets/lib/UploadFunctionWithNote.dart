@@ -10,7 +10,7 @@ Future<bool> uploadNote(String id,String path,List<int> filteredList,String dept
   StudentApiProvider facultyApiProvider = ApiFactory(1).getProvider();
   ApiConstants apiConstants = ApiConstants(1);
   debugPrint(apiConstants.sendUploadsWithNoteEndPoint()+id+"/");
-  bool result = await facultyApiProvider.UploadFileWithNote(path, apiConstants.sendUploadsWithNoteEndPoint()+id,filteredList,dept,name);
+  bool result = await facultyApiProvider.UploadFileWithNote(path, apiConstants.sendUploadsWithNoteEndPoint()+id+"/",filteredList,dept,name);
   return result;
 }
 Future<void> findUploadNote(BuildContext context,String id,List<int> filteredList,String dept)

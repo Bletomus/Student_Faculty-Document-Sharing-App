@@ -4,12 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
+import 'package:general_widgets/NoConnection.dart';
 import 'package:models/StudentInfo.dart';
 import 'package:networking/Response.dart';
 import 'package:app_constants/LoginInformation.dart';
 import 'package:user_info_widgets/TextBoxHeadingsAndContent.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:view/StudentHome.dart';
+import 'package:view/SubmitForm.dart';
 
 
 
@@ -32,6 +34,7 @@ class _StudentInfoState extends State<StudentInformation>
   void initState()
   {
     super.initState();
+    debugPrint(widget.userCredentials.toString() + widget.userCredentials.user_id.toString());
     _userInfoBloc = UserInfoBloc(widget.userCredentials.user, widget.userCredentials.user_id);
   }
 
@@ -66,15 +69,13 @@ class _StudentInfoState extends State<StudentInformation>
 
           }
         }
-        WidgetsBinding.instance.addPostFrameCallback
-          (
-                (_)
-            {
-              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app!! Please send me a message");
-            }
-        );
-        return StudentHome(userCredentials: widget.userCredentials);
+        else
+        {
 
+          return StudentHome(userCredentials: widget.userCredentials);
+        }
+
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
       },
     );
 

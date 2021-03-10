@@ -21,7 +21,7 @@ class FacultyOptions extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return whiteBackGroundWidget(insiderWidget: Options.withUser(options,2,userCredentials),);
+    return whiteBackGroundWidget(insiderWidget: Options.withUser(_options,2,userCredentials),);
   }
 
 }

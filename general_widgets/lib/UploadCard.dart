@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:marquee/marquee.dart';
 import 'package:models/Uploads.dart';
 import 'package:app_constants/ThemeConstants.dart';
 class UploadCard extends StatelessWidget
@@ -33,7 +34,17 @@ class UploadCard extends StatelessWidget
                   child:SvgPicture.asset('assets/icons/document.svg'),
                 ),
               ),
-              Text.rich(TextSpan(text: upload.fileName,style: TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize)),textAlign: TextAlign.start,),
+              Align
+                (
+                alignment: Alignment.topRight,
+                child:SizedBox
+                  (
+                  width: 100,
+                  height: 100,
+                  child: Align(alignment: Alignment.topRight,child:Marquee(text: upload.fileName + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),),),
+                ),
+              ),
+
               Align
               (
                 alignment: Alignment.topRight,

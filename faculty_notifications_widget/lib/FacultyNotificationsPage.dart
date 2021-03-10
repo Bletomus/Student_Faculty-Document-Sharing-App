@@ -8,6 +8,7 @@ import 'package:general_widgets/NotificationView.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:view/FacultyHome.dart';
+import 'package:view/SubmitForm.dart';
 
 
 
@@ -26,6 +27,7 @@ class _FacultyNotificationsState extends State<FacultyNotificationsPage>
   @override
   void initState()
   {
+    super.initState();
     facultyNotificationsBloc = FacultyNotificationsBloc(widget.userCredentials.user_id);
   }
   @override
@@ -58,15 +60,11 @@ class _FacultyNotificationsState extends State<FacultyNotificationsPage>
               break;
           }
         }
-
-        WidgetsBinding.instance.addPostFrameCallback
-          (
-                (_)
-            {
-              DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app, please send us feedback on the error and we will get to you soon!");
-            }
-        );
-        return FacultyHome(userCredentials: widget.userCredentials,);
+        else
+        {
+          return FacultyHome(userCredentials: widget.userCredentials,);
+        }
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
 
       },
     );

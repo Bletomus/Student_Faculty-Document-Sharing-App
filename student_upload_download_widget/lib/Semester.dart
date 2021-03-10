@@ -37,7 +37,7 @@ class Semesters extends StatelessWidget
               String loci = location + filtered[index] + " ";
               Navigator.push
               (
-                context,MaterialPageRoute(builder: (context) => FileListing(student: student[0],location: location), ),
+                context,MaterialPageRoute(builder: (context) => FileListing(student: student[0],location: loci), ),
               );
 
             }

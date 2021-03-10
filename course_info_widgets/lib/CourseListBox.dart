@@ -2,6 +2,7 @@ import 'package:app_constants/ThemeConstants.dart';
 import 'package:course_info_widgets/CoursePicker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 
 class CourseListBox extends StatelessWidget
 {
@@ -94,7 +95,7 @@ class RowWidget extends StatelessWidget
         Align
         (
           alignment: Alignment.topRight,
-          child:Text.rich(TextSpan(text: value,style: TextStyle(color: ConstantVariables.fieldTextColor,fontSize: ConstantVariables.fieldTextSize,fontFamily: "Poppins",fontWeight: FontWeight.bold),),textAlign: TextAlign.end,),
+          child:Text.rich(TextSpan(text: value,style: TextStyle(color: ConstantVariables.fieldTextColor,fontSize: ConstantVariables.fieldTextSize,fontFamily: "Poppins",fontWeight: FontWeight.bold),)),
         ),
       ],
     );

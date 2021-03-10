@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
+import 'package:general_widgets/NoConnection.dart';
 import 'package:models/StudentTakes.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 import 'package:view/StudentHome.dart';
+import 'package:view/SubmitForm.dart';
 
 import 'Courses.dart';
 
@@ -60,14 +62,11 @@ class StudentState extends State<StudentRAndA>
           }
         }
         else
-          WidgetsBinding.instance.addPostFrameCallback
-            (
-                  (_)
-              {
-                DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the app!! Please send me a message");
-              }
-          );
-        return StudentHome(userCredentials: widget.userCredentials);
+        {
+          return StudentHome(userCredentials: widget.userCredentials);
+        }
+
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
       },
     );
   }

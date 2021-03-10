@@ -92,6 +92,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  faculty_info_package:
+    dependency: transitive
+    description:
+      path: "../faculty_info_package"
+      relative: true
+    source: path
+    version: "0.0.1"
   faculty_notifications_widget:
     dependency: "direct main"
     description:
@@ -240,6 +247,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  open_file:
+    dependency: transitive
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   options_widget:
     dependency: transitive
     description:
@@ -385,6 +399,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.3"
+  student_info_widgets:
+    dependency: transitive
+    description:
+      path: "../student_info_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
   student_notifications_widget:
     dependency: "direct main"
     description:
@@ -410,6 +431,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../student_scores_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
+  student_upload_download_widget:
+    dependency: transitive
+    description:
+      path: "../student_upload_download_widget"
       relative: true
     source: path
     version: "0.0.1"
@@ -462,6 +490,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.5"
+  view:
+    dependency: "direct main"
+    description:
+      path: "../view"
+      relative: true
+    source: path
+    version: "0.0.1"
   win32:
     dependency: transitive
     description:

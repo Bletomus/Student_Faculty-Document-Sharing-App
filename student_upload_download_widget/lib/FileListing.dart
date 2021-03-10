@@ -51,7 +51,7 @@ class FileListing extends StatelessWidget
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
 
-              else
+              if(index ==  2)
                 pushNewScreen(
                   context,
                   screen: Submissions(personID: student.studentTaking.id,location: (location + options[2]),),

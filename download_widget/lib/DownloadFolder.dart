@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:marquee/marquee.dart';
 import 'package:open_file/open_file.dart';
 
 class DownloadFolder extends StatefulWidget
@@ -132,7 +133,14 @@ class _StateDownload extends State<DownloadFolder>
                       child:SvgPicture.asset('assets/icons/document.svg'),
                     ),
                   ),
-                  Text.rich(TextSpan(text: filename,style: TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize)),textAlign: TextAlign.start,),
+                  SizedBox
+                  (
+                    width:200,
+                    height:200,
+                    child: Marquee(text: filename + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),),
+                  ),
+
+
                 ],
               ),
             ),

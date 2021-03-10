@@ -2,21 +2,21 @@ import 'package:app_constants/LoginInformation.dart';
 import 'package:blocs/TeachesBloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:general_widgets/DialogBox.dart';
 import 'package:general_widgets/LoadingWidgets.dart';
 import 'package:models/Teaches.dart';
 import 'package:networking/Response.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
+import 'package:view/FacultyHome.dart';
+import 'package:view/SubmitForm.dart';
 
 import 'Departments.dart';
-LoginVariables userCredentials;
-List<Teaches> students ;
+
+
 class FacultyRAndA extends StatefulWidget
 {
-
-  FacultyRAndA(LoginVariables loginVariables)
-  {
-    userCredentials = loginVariables;
-  }
+  FacultyRAndA({Key key, this.userCredentials}) : super(key: key);
+  final LoginVariables userCredentials;
 
   @override
   FacultyState createState() => FacultyState();
@@ -30,7 +30,7 @@ class FacultyState extends State<FacultyRAndA>
   void initState()
   {
     super.initState();
-    teachesBloc = TeachesBloc(userCredentials.user_id);
+    teachesBloc = TeachesBloc(widget.userCredentials.user_id);
   }
   @override
   Widget build(BuildContext context)
@@ -48,16 +48,23 @@ class FacultyState extends State<FacultyRAndA>
               return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
               break;
             case Status.COMPLETED:
-              students = snapshot.data.data;
-              return Departments(teaches: students,);
+              return Departments(teaches: snapshot.data.data,);
               break;
             default:
-              return Text("There seems to be a problem with the connection!",style: TextStyle(color: Colors.black, fontSize: 24,),);
+              WidgetsBinding.instance.addPostFrameCallback
+                (
+                      (_)
+                  {
+                    DialogBox.showMessage(context, "Error Loading", "There seems to be a problem with the connection!! Please verify connection and try again");
+                  }
+              );
               break;
           }
         }
         else
-          return Text("error");
+          return FacultyHome(userCredentials: widget.userCredentials,);
+
+        return whiteBackGroundWidget(insiderWidget: LoadingCircle(),);
       },
     );
 
