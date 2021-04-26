@@ -11,13 +11,14 @@ class UploadCard extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return Container
+    return ConstrainedBox
     (
+      constraints: BoxConstraints.expand(height: 50,width: double.infinity),
       child: Card
       (
           child: Row
           (
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children:
@@ -29,31 +30,14 @@ class UploadCard extends StatelessWidget
                 child:
                 SizedBox
                 (
-                  width:100,
-                  height:100,
-                  child:SvgPicture.asset('assets/icons/document.svg'),
+                  width:50,
+                  height:50,
+                  child:SvgPicture.asset('assets/icons/down_arrow.svg'),
                 ),
               ),
-              Align
-                (
-                alignment: Alignment.topRight,
-                child:SizedBox
-                  (
-                  width: 100,
-                  height: 100,
-                  child: Align(alignment: Alignment.topRight,child:Marquee(text: upload.fileName + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),),),
-                ),
-              ),
+              Flexible(
 
-              Align
-              (
-                alignment: Alignment.topRight,
-                child:SizedBox
-                  (
-                  width: 100,
-                  height: 100,
-                  child: Align(alignment: Alignment.topRight,child:SvgPicture.asset('assets/icons/down_arrow.svg')),
-                ),
+                  child: upload.fileName.length > 25 ? Marquee(text: upload.fileName + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),): Align(alignment: Alignment.centerLeft,child: Text.rich(TextSpan(text: upload.fileName,style: TextStyle(color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize,fontFamily: "Poppins"),),textAlign: TextAlign.left),),
               ),
             ],
           ),

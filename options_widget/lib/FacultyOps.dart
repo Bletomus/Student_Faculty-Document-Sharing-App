@@ -5,6 +5,7 @@ import 'package:options_widget/AboutDepartment.dart';
 import 'package:options_widget/AboutSchool.dart';
 import 'package:options_widget/SendFiles.dart';
 import 'package:options_widget/SpecialMentions.dart';
+import 'package:user_info_widgets/BlueBackGround.dart';
 import 'package:user_info_widgets/WhiteBackGround.dart';
 
 
@@ -31,7 +32,7 @@ class FacultyOps extends StatelessWidget
     if(index == 3)
       return AboutDepartment();
     else
-      return DownloadFolder();
+      return BlueBackGroundWidget(insiderWidget:DownloadFolder());
   }
 
 }

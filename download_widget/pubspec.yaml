@@ -18,6 +18,8 @@ dependencies:
     path: ../networking
   app_constants:
     path: ../app_constants
+  user_info_widgets:
+    path: ../user_info_widgets
   flutter_svg: ^0.19.2+1
   open_file: ^3.0.3
 

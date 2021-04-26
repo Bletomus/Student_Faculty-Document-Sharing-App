@@ -9,6 +9,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:marquee/marquee.dart';
 import 'package:open_file/open_file.dart';
+import 'package:user_info_widgets/BlueBackGround.dart';
 
 class DownloadFolder extends StatefulWidget
 {
@@ -110,41 +111,38 @@ class _StateDownload extends State<DownloadFolder>
 
         return GestureDetector
         (
-          child: Container
-            (
-            child: Card
-              (
-              child: Row
-                (
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children:
-                <Widget>
-                [
-                  Align
-                    (
-                    alignment: Alignment.topLeft,
-                    child:
-                    SizedBox
-                      (
-                      width:100,
-                      height:100,
-                      child:SvgPicture.asset('assets/icons/document.svg'),
-                    ),
-                  ),
-                  SizedBox
-                  (
-                    width:200,
-                    height:200,
-                    child: Marquee(text: filename + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),),
-                  ),
-
-
-                ],
-              ),
-            ),
-          ),
+             child: ConstrainedBox
+             (
+               constraints: BoxConstraints.expand(height: 50,width: double.infinity),
+               child: Card
+                 (
+                 child: Row
+                   (
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.baseline,
+                   textBaseline: TextBaseline.alphabetic,
+                   children:
+                   <Widget>
+                   [
+                     Align
+                       (
+                       alignment: Alignment.topLeft,
+                       child:
+                       SizedBox
+                         (
+                         width:50,
+                         height:50,
+                         child:SvgPicture.asset('assets/icons/document.svg'),
+                       ),
+                     ),
+                     Flexible
+                       (
+                       child: filename.length > 25 ? Marquee(text: filename + "      ",style:TextStyle(fontFamily: "Poppins",color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize),): Align(alignment: Alignment.centerLeft,child: Text.rich(TextSpan(text: filename,style: TextStyle(color: ConstantVariables.headingTextColor,fontSize: ConstantVariables.singleHeaderSize,fontFamily: "Poppins"),),textAlign: TextAlign.left),),
+                     ),
+                   ],
+                 ),
+               ),
+             ),
           onTap:
           ()
           async {
